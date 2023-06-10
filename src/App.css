@@ -1,38 +1,731 @@
+body{
+ width: 100%;
+ height: 100%;
+ position: fixed;
+}
+ .NavigationTab a:visited{
+  text-decoration: underline;
+}
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{
+  color:black;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.NavigationTab{
+background-color:#A0BDFF;
+width:100%;
+height: 10vh;
+position: absolute;
+top:0%;
+color:black !important;
+font-size: large;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+font-style: normal;
+
+}
+.enjoy,.enjoy1{
+  color: #407BFF;
+  font-size: larger;
+}
+.enjoy{
+  position: absolute;
+  top:34%;
+  left:4%;
+}
+.enjoy1{
+  position: absolute;
+  top:38%;
+  left:4%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.image{
+  position:absolute;
+  top:20%;
+
+  right:5%;
+  width: 40%;
+
+}
+.login{
+  position:absolute;
+  top:3%;
+  right:3%;
+  color:black;
+}
+.contact{
+  position:absolute;
+  top:3%;
+  right:10%;
+  color:black;
+}
+.about{
+  position:absolute;
+  top:3%;
+  right:17%;
+  color:black;
+  margin-right: 1%;
+}
+
+/* the design for headers */
+.header{
+  position:absolute;
+  top:3%;
+  right:24%;
+  margin-right: 1%;
+  color:black;
+}
+/* words  */
+.words{
+  position:absolute;
+  top:44%;
+  left:4%;
+}
+/* The design for button on home page */
+.button1{
+  background-color: #407BFF;
+  position:absolute;
+  top:60%;
+  left:4%;
+  border-radius: 10px;
+  padding:10px;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.logo{
+  color:black;
+  position: absolute;
+  left:5%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.RiMessage3Fill{
+  position: absolute;
+  left:2%;
+  top:18%;
+
+  font-size: 290%;
+}
+
+
+
+.videohome{
+  background-color: #A0BDFF;
+  position: absolute;
+  top:26%;
+  left:-2%;
+  border-radius:100%;
+  padding: 2%;
+  font-size: smaller;
+}
+
+.messageHome{
+  background-color: #A0BDFF;
+  position: absolute;
+  top:30%;
+  left:25%;
+  border-radius:100%;
+  padding: 2%;
+  font-size: smaller;
+}
+/* the design for stickers */
+.stickers{
+  background-color: #A0BDFF;
+  position: absolute;
+  top:80%;
+  left:25%;
+  border-radius:100%;
+  padding: 2%;
+  font-size: smaller;
+}
+
+.gifs{
+  background-color: #A0BDFF;
+  position: absolute;
+  top:95%;
+  left:35%;
+  border-radius:100%;
+  padding: 2%;
+  font-size: smaller;
+}
+
+.imageHome{
+  background-color: #A0BDFF;
+  position: absolute;
+  top:45%;
+  left:25%;
+  border-radius:100%;
+  padding: 2%;
+  font-size: smaller;
+}
+
+
+.homeFig{
+  background-color: #A0BDFF;
+  position: absolute;
+  top:82%;
+  left:-4%;
+  border-radius:100%;
+  padding: 10%;
+  font-size: smaller;
+
+}
+.imageLogin{
+  position: absolute;
+  top: 20%;
+  left: 1%;
+  width: 30%;
+}
+
+.headerlo{
+  color:#407BFF;
+  position: absolute;
+  top:15%;
+  left: 59%;
+}
+.form1 input{
+  background-color:#D9D9D9;
+  border-radius: 10px;
+  width: 160%;
+height: 6vh;
+  padding: 2%;
+  margin-top: 1%;
+  outline: none;
+  border: none;
+}
+
+.form1{
+  position: absolute;
+  top: 25%;
+  left: 55%;
+  text-align: left;
+
+}
+
+.form1 label{
+
+/* position: absolute; */
+
+text-align: left;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 300;
+font-size: 36px;
+
+}
+.email1 label{
+  position: absolute;
+  top: 60%;
+  color:#407BFF
+}
+
+.Ask{
+  font-size: large;
+  font-style: normal;
+  font-weight: normal;
+}
+.buttons{
+  border: none;
+  font-size: large;
+  font-weight: bolder;
+}
+.logobutton{
+  background-color: #A0BDFF;
+  padding: 5%;
+  border-radius: 7px;
+  color:black;
+  font-size: large;
+  width: 50%;
+  margin-top:3%;
+  border:none;
+}
+
+/* Design about the form  */
+
+.formContact {
+  position:absolute;
+  top:25%;
+  left: 25%;
+
+
+  background-size: 100%;
+ text-align: center;
+  
+  width: 100%;
+ 
+}
+.formContact input{
+  text-align: center;
+  padding: 1%;
+  width: 30%;
+  background-color:  #A0BDFF;
+  border: none;
+  border-radius: 5%;
+  outline-offset: none;
+
+}
+.formContact textarea{
+  text-align: center;
+  padding: 1%;
+  width: 30%;
+  background-color:  #A0BDFF;
+  border: none;
+  border-radius: 5%;
+  outline-offset: none;
+
+}
+.GetIntouch{
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  background-image: url("./Images/map.svg");
+}
+.formContact label{
+  position: absolute;
+  left: 35%;
+}
+.allcontact{
+  background-size: 100%;
+ text-align: center;
+  /* width: fit-content; */
+  width: 100%;
+  height: 100vh;
+  background-image: url("./Images/map.svg");
+}
+/* This is the design about the the about  */
+.imageAbout{
+  position: absolute;
+  right: 0.2%;
+  top: 6%;
+}
+
+.mission{
+  position: absolute;
+  top:20%;
+  left: 5%;
+  padding: 3%;
+  text-align:left;
+}
+
+.mission p{
+  font-size: large;
+ font-style: normal;
+ font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+}
+.mission h1{
+  color:#407BFF;
+}
+.pabout{
+  color: #407BFF;
+}
+.mission button{
+  background-color:#A0BDFF;
+  font-size: large;
+  font-style: normal;
+  font-weight: bold;
+  border: none;
+  padding: 3%;
+  width:53%;
+  border-radius: 5%;
+}
+.HomeCont{
+  text-align: left;
+  font-family:'Times New Roman', Times, serif;
+  font-size: large;
+  font-weight: lighter;
+  font-style: normal;
+}
+
+.forms{
+  text-align: left;
+  position: absolute;
+  top: 25%;
+  left: 55%;
+  font-size: large;
+  font-family:'Times New Roman', Times, serif;
+  font-style: normal;
+  font-weight:normal;
+  width: 30%;
+
+}
+/* This is for the inputs of  */
+.forms input{
+  outline: none;
+  background-color: #D9D9D9;
+  width: 100%;
+  height: 7vh;
+  border: none;
+  margin-bottom: 3%;
+  border-radius: 5%;
+  padding: 4%;
+  font-size: large;
+  font-family:'Times New Roman', Times, serif;
+/* font-weight: bolder; */
+font-style: normal;
+
+}
+/* This  is for signup button */
+.signupb{
+  background-color: #A0BDFF;
+  font-size: large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-weight: bolder;
+font-style: normal;
+padding: 2%;
+width: 25%;
+border-radius: 8%;
+outline: none;
+border: none;
+}
+.Logos{
+  position: absolute;
+  top: 20%;
+  left: 3%;
+  width: 50vw;
+  height: 50vh;
+}
+.h1s{
+  font-size: large;
+  font-family:'Times New Roman', Times, serif
+}
+.h1s button{
+  font-size: large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-weight: bolder;
+font-style: normal;
+border: none;
+
+}
+/* Design about the icons in sign in */
+.pass-icons{
+  position: absolute;
+  top: 73%;
+  right: 3%;
+}
+/* Design of the icon  of hiding or showing password in login */
+.pass-iconl{
+  position: absolute;
+  top:33%;
+  left: 143%;
+
+}
+
+.signhead{
+ color:#407BFF;
+ position: absolute;
+ top:10%;
+ left:65%;
+ font-size: xx-large;
+ font-family:'Times New Roman', Times, serif;
+ font-style: normal;
+ font-weight:bolder;
+}
+.formup{
+  position: absolute;
+  top:30%;
+ left: 50%;
+ text-align: left;
+ font-size: large;
+ font-family: 'Times New Roman', Times, serif;
+ font-weight: lighter;
+ font-style: normal;
+}
+ .formup input{
+  width: 150%;
+  height: 4.5vh;
+  border: none;
+  background-color:#D9D9D9;
+  border-radius: 4.5%;
+  margin-bottom: 3%;
+  padding:10%;
+outline: none;
+}
+.resetheader{
+  color:#407BFF;
+  font-size: x-larger;
+  font-family: 'Times New Roman', Times, serif;
+
+}
+.formup label{
+  font-size: xx-large;
+font-family: 'Times New Roman', Times, serif;
+}
+
+
+.buttonup{
+  background-color:#A0BDFF;
+  padding: 3.5%;
+ width: 35%;
+ border-radius: 15%;
+
+}
+/* this is the design of update icons */
+.password-icon1{
+  /* position:relative;
+  right: 28%; */
+  position: absolute;
+  top: 75%;
+  right: -45%;
+  /* margin-right: 10%; */
   }
-  to {
-    transform: rotate(360deg);
+
+  .password-icon{
+   
+    position: absolute;
+    top: 50%;
+
+    }
+    /* The following is the design for the header and sidebar for the pages */
+    .firstHeader{
+      background-color:#A0BDFF;
+      text-align: left;
+      font-size: medium;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-style: normal;
+      font-weight: lighter;
+      padding: 0.3%;
+    }
+    .firstHeader h1{
+    display: flex;
+    margin-top: 1%; 
+    margin-left: 3%;
+    }
+.iconH{
+  position: absolute;
+  display: flex;
+  margin-top: 1%;
+  margin-left: 1.2%;
+font-size: xx-large;
+}
+
+/* This is the design of the Leftsidebar */
+.firstsidebar{
+ position: fixed;
+ background: #D9D9D9;
+ top:9%;
+ text-align: left;
+ width: 10%;
+ bottom: 0%;
+ font-family: inter;
+}
+.firstsidebar div {
+margin-bottom:40% ;
+margin-left: 20%;
+ }
+ /* The design for the icons for header */
+ .iconsHd{
+margin-right:6%;
+font-size: 120%;
+ }
+
+.firstsidebarcal{
+  position: fixed;
+  background: #D9D9D9;
+  top:9%;
+  text-align: left;
+  width: 6%;
+  /* height: ; */
+  bottom: 0%;
+
+}
+.firstsidebarcal div{
+  margin-bottom:65% ;
+margin-left: 20%;
+
+}
+.username{
+position: fixed;
+right: 2%;
+top:2.5%;
+}
+.postm input{
+  margin-top: 4%;
+  background-color: #A0BDFF;
+  ;
+  width: 60%;
+  padding: 1%;
+  border-radius: 20px;
+  height: 7vh;
+border: none;
+outline: none;
+}
+.bsend{
+ position: relative;
+ right: 3.5%;
+ font-size: 20px;
+}
+.postsfield{
+
+background-color: #A0BDFF;
+position: absolute;
+
+right: 26%; 
+width: 50%;
+padding: 1%;
+height: 7vh;
+border: none;
+outline: none;
+}
+.postsfield input{
+  padding: 1%;
+  width:75%;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+.rithumIcon{
+font-size: xx-large;
+position: absolute;
+left: 3%;
+}
+
+.ridiscicon{
+  font-size: xx-large;
+  position: absolute;
+  left: 8%;
   }
+  .bsend2{
+    font-size: xx-large;
+    position: absolute;
+    right: 5%;
+  }
+  /* This the design of the  posts messages */
+  /* .PostsMessages{
+    color:red
+  } */
+
+  /* This is design of the recommends page */
+  .users {
+  
+   background-color: #D9D9D9;
+   text-align: left;
+   width: 80%;
+   margin-top: 0%;
+   margin-left: 14%;
+   padding:10px;
+   font-family: inter;
+   font-size: 19px;
+   
+  
+  }
+  .recommendsCont{
+    overflow: scroll;
+  }
+  .recommandPro{
+    text-align: right;
+    margin-top: -6.5%;
+    /* margin-right: 1%; */
+    padding-right: 2%;
+    font-family: inter;
+  }
+  .recommandPro p{
+    color :#407BFF;
+    display: inline;
+margin-left: 0.5%;
+  }
+  .recommandPro h3{
+    margin-right: 1.5%;
+    
+  }
+/* This is the personal messages */
+.messagesfield{
+
+  background-color: #A0BDFF;
+  position: fixed;
+  bottom:0.3%;
+  left: 10%; 
+  width: 90%;
+  padding: 1%;
+  height: 7vh;
+  border: none;
+  outline: none;
+  }
+
+.messagesfield input{
+  padding: 1%;
+  width:75%;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+.receivedMess{
+  background: #D9D9D9;
+  width: 15%;
+ position: absolute;
+ right: 2%;
+ margin-top: 1%;
+ text-align: left;
+ padding: 2%;
+ font-family: inter;
+}
+.sentMess{
+  background: #A0BDFF;
+
+  width: 15%;
+ position: absolute;
+ left: 15%;
+ margin-top: 25%;
+ text-align: left;
+ padding: 2%;
+ font-family: inter;
+
+}
+.acc{
+  margin-top: 5%;
+}
+.AccProf{
+  background-color: black;
+ 
+}
+.AccProf h1,p{
+  color: white;
+}
+.AccProf h1{
+  font-family: inter;
+  font-style: italic;
+  margin-top: 0px;
+
+
+}
+.accNav{
+  background-color: #A0BDFF;
+  margin-top: -1.4%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+ 
+}
+.accPrNav{
+  width: 70%;
+  margin-left: 20%;
+  font-family: inter;
+  
+}
+.aboutcontent{
+  font-family: inter;
+  background: #D9D9D9;
+  width: 70%;
+
+  margin-left: 20%;
+  font-family: inter;
+  height: 30vh
+}
+.navisett{
+  background: #D9D9D9;
+  border-radius: 20px;
+ 
+ width: 70%;
+ margin-left: 20%;
+ margin-right: 10%;
+
+}
+
+.navisett p{
+ 
+  display: inline;
+  margin-left:2% ;
+ 
+
 }
