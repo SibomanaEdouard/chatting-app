@@ -642,6 +642,7 @@ margin-left: 0.5%;
   height: 7vh;
   border: none;
   outline: none;
+  font-family: inter;
   }
 
 .messagesfield input{
@@ -650,6 +651,7 @@ margin-left: 0.5%;
   border-radius: 10px;
   border: none;
   outline: none;
+  font-family: inter;
 }
 .receivedMess{
   background: #D9D9D9;
@@ -715,17 +717,273 @@ margin-left: 0.5%;
 .navisett{
   background: #D9D9D9;
   border-radius: 20px;
- 
  width: 70%;
  margin-left: 20%;
  margin-right: 10%;
+ height:5vh;
+ padding: 10px;
+ font-family: inter;
 
 }
 
 .navisett p{
- 
+  color: black;
   display: inline;
-  margin-left:2% ;
- 
+  margin-left:8%;
 
+text-align: center;
+
+}
+/* This is the style for the settings page */
+.sett2 {
+
+position: absolute;
+right: 20%;
+top: 40%;
+display: inline;
+
+}
+.sett2Div{
+  border-radius:7px;
+  border-radius:7px;
+  margin-right: 10px;
+  padding-right: 20px;
+  padding-left: 10px;
+
+ 
+ }
+.sett2 p{
+ display: inline;
+ margin-left: 2px;
+ 
+ }
+ .sett1 {
+
+  position: absolute;
+  right: 20%;
+  top: 42%;
+  display: inline;
+  
+  }
+  .sett1Div{
+    border-radius:7px;
+    border-radius:7px;
+    margin-right: 10px;
+    padding-right: 20px;
+    padding-left: 14px;
+  }
+
+  .sett1 p{
+   display: inline;
+   margin-left: 2px; 
+   }
+
+   .sett3 {
+
+    position: absolute;
+    right: 20.5%;
+    top: 44%;
+    display: inline;
+    
+    }
+    .sett3Div{
+      border-radius:7px;
+      border-radius:7px;
+      margin-right: 10px;
+      padding-right: 18px;
+      padding-left: 12px;
+    }
+  
+    .sett3 p{
+     display: inline;
+     margin-left: 2px; 
+     }
+     .settag2 {
+
+      position: absolute;
+      right: 20%;
+      top: 53%;
+      display: inline;
+      
+      }
+      .settag2Div{
+        border-radius:7px;
+        border-radius:7px;
+        margin-right: 10px;
+        padding-right: 18px;
+        padding-left: 12px;
+      }
+    
+      .settag2 p{
+       display: inline;
+       margin-left: 2px; 
+       }
+
+       .settag1 {
+
+        position: absolute;
+        right: 20%;
+        top: 55%;
+        display: inline;
+        
+        }
+        .settag1Div{
+          border-radius:7px;
+          border-radius:7px;
+          margin-right: 10px;
+          padding-right: 20px;
+          padding-left: 12px;
+        }
+      
+        .settag1 p{
+         display: inline;
+         margin-left: 2px; 
+         }
+         .settag3 {
+
+          position: absolute;
+          right: 20.5%;
+          top: 57%;
+          display: inline;
+          
+          }
+          .settag3Div{
+            border-radius:7px;
+            border-radius:7px;
+            margin-right: 10px;
+            padding-right: 16px;
+            padding-left: 12px;
+          }
+        
+          .settag3 p{
+           display: inline;
+           margin-left: 2px; 
+           }
+
+           .setrem2 {
+
+            position: absolute;
+            right: 20%;
+            top: 65%;
+            display: inline;
+            
+            }
+            .setrem2Div{
+              border-radius:7px;
+              border-radius:7px;
+              margin-right: 10px;
+              padding-right: 16px;
+              padding-left: 12px;
+            }
+          
+            .setrem2 p{
+             display: inline;
+             margin-left: 2px; 
+             }
+             .setrem1 {
+
+              position: absolute;
+              right: 20%;
+              top: 67%;
+              display: inline;
+              
+              }
+              .setrem1Div{
+                border-radius:7px;
+                border-radius:7px;
+                margin-right: 10px;
+                padding-right: 20px;
+                padding-left: 12px;
+              }
+            
+              .setrem1 p{
+               display: inline;
+               margin-left: 2px; 
+               }
+
+               .setrem3 {
+
+                position: absolute;
+                right: 20.5%;
+                top: 69%;
+                display: inline;
+                
+                }
+                .setrem3Div{
+                  border-radius:7px;
+                  border-radius:7px;
+                  margin-right: 10px;
+                  padding-right: 16px;
+                  padding-left: 12px;
+                }
+              
+                .setrem3 p{
+                 display: inline;
+                 margin-left: 2px; 
+                 }
+                 .setMore2 {
+
+                  position: absolute;
+                  right: 20%;
+                  top: 77%;
+                  display: inline;
+                  
+                  }
+                  .setMore2Div{
+                    border-radius:7px;
+                    border-radius:7px;
+                    margin-right: 10px;
+                    padding-right: 16px;
+                    padding-left: 12px;
+                  }
+                
+                  .setMore2 p{
+                   display: inline;
+                   margin-left: 2px; 
+                   }
+
+                   .setMore1 {
+
+                    position: absolute;
+                    right: 20%;
+                    top: 79%;
+                    display: inline;
+                    
+                    }
+                    .setMore1Div{
+                      border-radius:7px;
+                      border-radius:7px;
+                      margin-right: 10px;
+                      padding-right: 20px;
+                      padding-left: 12px;
+                    }
+                  
+                    .setMore1 p{
+                     display: inline;
+                     margin-left: 2px; 
+                     }
+
+                     .setMore3 {
+
+                      position: absolute;
+                      right: 20.5%;
+                      top: 81%;
+                      display: inline;
+                      
+                      }
+                      .setMore3Div{
+                        border-radius:7px;
+                        border-radius:7px;
+                        margin-right: 10px;
+                        padding-right: 18px;
+                        padding-left: 12px;
+                      }
+                    
+                      .setMore3 p{
+                       display: inline;
+                       margin-left: 2px; 
+                       }
+.settingFunc,h1,p{
+  font-family: inter;
+  color: black;
 }
