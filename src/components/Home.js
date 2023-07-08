@@ -4,6 +4,7 @@ import {RiMessage3Fill} from "react-icons/ri"
 //this is navigation bar function
 export const NavigationTab=(()=>{
     return(
+      <div className="text-black">
         <div className="NavigationTab">
             <h1 className="header"><a href="/">Home</a></h1>
             <h1 className="about"><a href="/about">About</a></h1>
@@ -11,6 +12,7 @@ export const NavigationTab=(()=>{
             <h1 className="login"><a href="/sign/login">Login</a></h1>
             <RiMessage3Fill className="RiMessage3Fill"/>
             <h1 className="logo">ENPEACE</h1>
+        </div>
         </div>
     )
 })

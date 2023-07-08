@@ -2,11 +2,11 @@ const express=require('express');
 const bcrypt=require("bcrypt");
 const Routed=express();
 const Users=require('../models/users');
-const Messages=require("../models/messages")
+const Messages=require("../models/messages");
+const Friends=require("../models/Friends");
 
 
 //this is to insert the user in database
-
 Routed.post('/', async (req, res) => {
   const saltRound = 10;
   const { firstname, lastname, email, phone, password } = req.body;
@@ -195,5 +195,96 @@ try{
   res.status(400).json({error:"Sorry something went wrong"});
 
 }
+})
+
+//this is for selecting friends freinds;
+Routed.post('/addFriend',async(req,res)=>{
+  try{
+const {sender,receiver}=req.body;
+//let me check if the sender is in database;
+const senderCheck=await Users.findById({_id:sender});
+if(senderCheck!=null){
+const receiverCheck=await Users.findById({_id:receiver});
+if(receiverCheck!=null){
+
+  //let me check if you are not already friends
+  //let me find if the user is in the friends 
+  const findFriend=await Friends.findOne({sender});
+  if(findFriend==null){
+
+ const newFriend1= await new Friends({
+    sender,
+    receiver
+  });
+await newFriend1.save();
+res.status(200).json(`${receiverCheck.firstname} was added successfully to your friends`);
+  }
+  else{
+    //let me check if you are already friends
+    if(findFriend.receiver==receiver){
+      console.log("You are already friends");
+      res.status(201).json(`you and ${receiverCheck.firstname} you are already friends`);
+
+    }else{
+        const newFriend= await new Friends({
+    sender,
+    receiver
+  });
+await newFriend.save();
+res.status(200).json(`${receiverCheck.firstname} was added successfully to your friends`);
+
+    }
+  }
+}else{
+  res.status(404).json("This person is not found on the system")
+}
+}else{
+  console.log("The sender is not exist in the system");
+  res.status(404).json({"error":"The user is not exist in the system!"});
+}
+  }catch(error){
+    console.log(error);
+    res.status(400).json({"error":"something went wrong plaese try again later"});
+  }
+
+})
+
+//let me retrieve the friends from the database
+Routed.get("/friends",async(req,res)=>{
+  try{
+const {sender}=req.body;
+const myFriends=await Friends.find({sender}).select(" receiver , _id");
+if(myFriends.length>0){
+  console.log("You have some friends");
+  res.status(200).json(myFriends);
+}else if(myFriends.length==0){
+  console.log("You haven't any friends");
+  res.status(404).json('There is no friends on your account');
+}
+  }catch(error){
+console.log(error);
+res.status(500).json({"error":"something went wrong please try again latter"});
+  }
+})
+
+//this is to delete the friends from your list
+Routed.delete('/deleteFriend',async(req,res)=>{
+  try{
+    const {sender,receiver}=req.body;
+    const findFriendToDelete=await Friends.findOne({sender,receiver});
+    if(findFriendToDelete!=null){
+//let me check in the users then find his or her name
+const checkUserFromUsers=await Users.findOne({_id:receiver});
+    const deleteFriend=await Friends.deleteOne({sender,receiver});
+    if(deleteFriend){
+      res.status(200).json(`${checkUserFromUsers.firstname} was removed from your friends`);
+    }else{
+      res.status(400).json({"error":"There was error in deleting the friend!"});
+    }
+  }
+  }catch(error){
+    console.log(error);
+    res.status(400).json({"error":"There was error in deleting friend please try again latter!"});
+  }
 })
 module.exports=Routed;

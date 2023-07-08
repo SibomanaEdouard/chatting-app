@@ -27,6 +27,11 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 font-style: normal;
 
 }
+.NavigationTab a{
+  color: black;
+outline: none;
+text-decoration: none;
+}
 .enjoy,.enjoy1{
   color: #407BFF;
   font-size: larger;
