@@ -8,6 +8,7 @@ const multer=require('multer');
 const path=require('path');
 const getData=require("../Controllers/dataController");
 const ImageControllers = require('../Controllers/ImageController');
+const updateInfo=require("../Controllers/updateInfo");
 
 //this is to insert the user in database
 Routed.post('/', async (req, res) => {
@@ -81,7 +82,6 @@ else{
 
 
 //to update password
-
 Routed.put('/', async (req, res) => {
   const { email, password, confirmPassword } = req.body;
 
@@ -333,4 +333,5 @@ Routed.use('/uploads',express.static('uploads'));
 
 //this is the route to get the data
 Routed.post("/datum",getData);
+Routed.put("/updateinfo",updateInfo);
 module.exports = Routed;

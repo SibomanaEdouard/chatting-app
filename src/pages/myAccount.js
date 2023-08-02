@@ -8,7 +8,9 @@ import {BiUser} from "react-icons/bi"
 import {AiOutlineCamera} from "react-icons/ai"
 import {FiSmartphone} from "react-icons/fi"
 import {BiHeart}from "react-icons/bi"
-
+import {AiOutlinePlus} from "react-icons/ai"
+import {GiWorld} from "react-icons/gi"
+import {AiOutlineCheck} from "react-icons/ai"
 
 const userId=localStorage.getItem('id');
 
@@ -86,7 +88,7 @@ style={{width:"10%",borderRadius:"50%"}}
 </div>
 <div  onClick={handleButtonClick} className="text-white text-end">
   <AiOutlineCamera className="bg-white"/>
-<span className="text-white">
+<span className="text-white p-2">
 Edit cover photo
 </span>
 </div>
@@ -169,6 +171,7 @@ const About=()=>{
   const [link,setLink]=useState('');
   const [hobby,setHobby]=useState('');
   const [work,setWork]=useState('');
+  const [image,setImage]=useState(null)
 
   //the function to fetch data from the backend before being edited
 const userData=async()=>{
@@ -186,6 +189,7 @@ setHome(data.home);
 setLink(data.link);
 setHobby(data.hobby);
 setWork(data.work);
+setImage(data.imageUrl)
 }else{
   throw new Error(response.error);
 }
@@ -209,7 +213,11 @@ const changeSchool=(e)=>{
         <form>
 <div className="row text-start p-4">
 <div className="col-md-6">
-<span className="fw-bold">work<br/>
+<img src={`http://localhost:5500/sign/uploads/${image}`} 
+alt="profile"
+style={{width:"5%",borderRadius:"50%"}}
+/>
+<span className="fw-bold p-2">work<br/>
 <input 
 value={work}
 type="text"
@@ -222,8 +230,14 @@ style={{backgroundColor:"#D9D9D9"}}
 </div>
 
 <div className="col-md-6">
-  <BiHeart/>
-<span className="fw-bold">Hobbies and interest<br/>
+  <BiHeart
+  style={{borderRadius:"50%",
+  backgroundColor:"#A0BDFF",
+  padding:"1%"
+  }}
+  className="fs-2"
+  />
+<span className="fw-bold p-2">Hobbies and interest<br/>
 <input 
 value={hobby}
 type="text"
@@ -236,7 +250,13 @@ style={{backgroundColor:"#D9D9D9"}}
 </div>
 
 <div className="col-md-6">
-<span className="fw-bold">Add school<br/>
+  <AiOutlinePlus  style={{borderRadius:"50%",
+  backgroundColor:"#A0BDFF",
+  padding:"1%"
+  }}
+  className="fs-2"
+  />
+<span className="fw-bold p-2">Add school<br/>
 <input 
 value={school}
 type="text"
@@ -249,8 +269,14 @@ style={{backgroundColor:"#D9D9D9"}}
 </div>
 
 <div className="col-md-6">
-  <FiSmartphone/>
-<span className="fw-bold">phone<br/>
+  <FiSmartphone
+  style={{borderRadius:"50%",
+  backgroundColor:"#A0BDFF",
+  padding:"1%"
+  }}
+  className="fs-2"
+  />
+<span className="fw-bold p-2">phone<br/>
 <input 
 value={phone}
 type="text"
@@ -263,7 +289,8 @@ style={{backgroundColor:"#D9D9D9"}}
 </div>
 
 <div className="col-md-6">
-<span className="fw-bold">Home<br/>
+  <GiWorld className="fs-2"/>
+<span className="fw-bold p-2">Home<br/>
 <input 
 value={home}
 type="text"
@@ -276,8 +303,14 @@ style={{backgroundColor:"#D9D9D9"}}
 </div>
 
 <div className="col-md-6">
-  <BiUser/>
-<span className="fw-bold">instagram link<br/>
+  <BiUser
+  style={{borderRadius:"50%",
+  backgroundColor:"#A0BDFF",
+  padding:"1%"
+  }}
+  className="fs-2"
+  />
+<span className="fw-bold p-2">instagram link<br/>
 <input 
 value={link}
 type="text"
