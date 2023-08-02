@@ -4,6 +4,11 @@ import axios from "axios";
 import {BsCameraFill} from "react-icons/bs"
 import { FirstsideBar } from "./HeaderWork";
 import Header from "./HeaderWork";
+import {BiUser} from "react-icons/bi"
+import {AiOutlineCamera} from "react-icons/ai"
+import {FiSmartphone} from "react-icons/fi"
+import {BiHeart}from "react-icons/bi"
+
 
 const userId=localStorage.getItem('id');
 
@@ -79,8 +84,8 @@ style={{width:"10%",borderRadius:"50%"}}
 />
 <span className="text-white p-3">{username}</span>
 </div>
-<div  onClick={handleButtonClick} className="text-white">
-  <BsCameraFill/>
+<div  onClick={handleButtonClick} className="text-white text-end">
+  <AiOutlineCamera className="bg-white"/>
 <span className="text-white">
 Edit cover photo
 </span>
@@ -217,6 +222,7 @@ style={{backgroundColor:"#D9D9D9"}}
 </div>
 
 <div className="col-md-6">
+  <BiHeart/>
 <span className="fw-bold">Hobbies and interest<br/>
 <input 
 value={hobby}
@@ -243,6 +249,7 @@ style={{backgroundColor:"#D9D9D9"}}
 </div>
 
 <div className="col-md-6">
+  <FiSmartphone/>
 <span className="fw-bold">phone<br/>
 <input 
 value={phone}
@@ -269,6 +276,7 @@ style={{backgroundColor:"#D9D9D9"}}
 </div>
 
 <div className="col-md-6">
+  <BiUser/>
 <span className="fw-bold">instagram link<br/>
 <input 
 value={link}
