@@ -4,7 +4,8 @@ import {RiThumbUpFill} from 'react-icons/ri'
 import {RiDiscussFill} from "react-icons/ri"
 import {BsFillSendFill} from 'react-icons/bs'
 import { useState } from "react";
-
+import { Friends } from "./Friends";
+import { GetFriends, GetFriendsOnly } from "./Recommands";
 
 //this is sidebar for messages
 const FriendBar=()=>{
@@ -12,6 +13,7 @@ const FriendBar=()=>{
     return(
         <div className="firstsidebar">
             <h1>Friends</h1>
+          <GetFriendsOnly/>
 
         </div>
     )
@@ -52,7 +54,7 @@ const ReceivedPersonMess=()=>{
         <div className="receivedMess">
             <div>
 
-            <h1>This is is the received messages</h1>
+            <h1>This  is the received messages</h1>
             </div>
         </div>
     )
@@ -63,7 +65,7 @@ const SentPersonMess=()=>{
     return(
         <div className="sentMess">
 
-            <h1>This is is the sent messages</h1>
+            <h1>This is the sent messages</h1>
         </div>
     )
 }

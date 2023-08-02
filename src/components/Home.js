@@ -5,7 +5,7 @@ import {RiMessage3Fill} from "react-icons/ri"
 export const NavigationTab=(()=>{
     return(
       <div className="text-black">
-        <div className="NavigationTab">
+        <div className="NavigationTab fixed">
             <h1 className="header"><a href="/">Home</a></h1>
             <h1 className="about"><a href="/about">About</a></h1>
             <h1 className="contact"><a href="/contact">contact</a></h1>

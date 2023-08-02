@@ -26,6 +26,7 @@ font-size: large;
 font-family: Verdana, Geneva, Tahoma, sans-serif;
 font-style: normal;
 
+
 }
 .NavigationTab a{
   color: black;
@@ -531,19 +532,16 @@ font-size: 120%;
   top:9%;
   text-align: left;
   width: 6%;
-  /* height: ; */
   bottom: 0%;
 
 }
 .firstsidebarcal div{
   margin-bottom:65% ;
 margin-left: 20%;
-
 }
+
 .username{
-position: fixed;
-right: 2%;
-top:2.5%;
+ text-align: end; 
 }
 .postm input{
   margin-top: 4%;
@@ -598,43 +596,52 @@ left: 3%;
     right: 5%;
   }
   /* This the design of the  posts messages */
-  /* .PostsMessages{
-    color:red
-  } */
+
 
   /* This is design of the recommends page */
   .users {
   
-   background-color: #D9D9D9;
+   /* background-color: #F6F6F6; */
    text-align: left;
-   width: 80%;
+   /* width: 80%; */
    margin-top: 0%;
+   float:inline-start;
    margin-left: 14%;
-   padding:10px;
+   /* padding:10px; */
    font-family: inter;
    font-size: 19px;
    
+   
   
+  }
+  .users li{
+   /* margin-right:2% ; */
+   
+
+  }
+  .users.container {
+    /* margin-left: 20px; */
+    /* margin-right: 20px; */
   }
   .recommendsCont{
     overflow: scroll;
   }
   .recommandPro{
-    text-align: right;
-    margin-top: -6.5%;
-    /* margin-right: 1%; */
+    background-color: #D9D9D9;
+   
+  }
+  .recommandPro p, h3{
+   
+    display: inline;
     padding-right: 2%;
     font-family: inter;
   }
   .recommandPro p{
-    color :#407BFF;
+     color :#407BFF;
     display: inline;
 margin-left: 0.5%;
   }
-  .recommandPro h3{
-    margin-right: 1.5%;
-    
-  }
+ 
 /* This is the personal messages */
 .messagesfield{
 
@@ -714,10 +721,10 @@ margin-left: 0.5%;
   font-family: inter;
   background: #D9D9D9;
   width: 70%;
-
+border-radius:10px;
   margin-left: 20%;
   font-family: inter;
-  height: 30vh
+  height: 30vh;
 }
 .navisett{
   background: #D9D9D9;

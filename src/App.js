@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+
+import { useEffect, useMemo, useRef, useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router , Route,Routes } from 'react-router-dom';
 import { Home } from './components/Home';
@@ -14,22 +15,26 @@ import { Friends } from './pages/Friends';
 import { Recommends } from './pages/Recommands';
 import { Settings } from './pages/Settings';
 import { Collapsed } from './pages/collapsedPost';
-
 import {io} from 'socket.io-client';
+
 
 
 // import Header from './pages/HeaderWork';
 function App() {
-  
+  const [user,setUser]=useState(null);
+//let me pass information about the user in the context
+const value=useMemo(()=>({user,setUser}),[user,setUser])
   let socket = useRef(null)
   useEffect(()=>{
      socket.current=io('http://localhost:5500')
   },[])
   return (
-   
+  
     <div className="App">
       <Router>
+   
 <Routes>
+
         <Route path="/" element={<Home socket={socket}/>}/>
         <Route path="/sign" element={<SignInForm socket={socket}/>}/>
         <Route path="/sign/login" element={<LoginForm socket={socket}/>}/>
@@ -43,14 +48,17 @@ function App() {
         <Route path="/recommends" element={<Recommends socket={socket}/>}/>
         <Route path="/settings" element={<Settings socket={socket}/>}/>
 
-        <Route path="/posts" element={<Collapsed socket={socket}/>}/>
-
+        <Route path="/posts" element={<Collapsed socket={socket}/>}/>    
         </Routes>
       </Router>
       
     </div>
    
+   
   );
 }
 
 export default App;
+
+
+

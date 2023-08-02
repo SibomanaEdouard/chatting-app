@@ -2,19 +2,26 @@ import React from "react";
 import { FirstsideBar } from "./HeaderWork";
 import Header from "./HeaderWork";
 import { useState } from "react";
-
+//let navigate to the account
+function navigateToAccount(){
+    window.location.href="/account"
+}
+//this is to navigate to the help 
+function navigateTOHelp(){
+    window.location.href="/contact"
+}
 //this is navigation for setting
 const Navigatesetting=()=>{
     return(
         <div className="navisett">
 
-<p>My account</p>
+<p onClick={navigateToAccount}>My account</p>
 <p>Notifications</p>
 <p>Themes</p>
 <p>Mode</p>
 <p>Languages</p>
 <p>Typing</p>
-<p>Help</p>
+<p onClickCapture={navigateTOHelp}>Help</p>
         </div>
     )
 }

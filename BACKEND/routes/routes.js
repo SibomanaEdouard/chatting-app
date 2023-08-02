@@ -1,10 +1,13 @@
 const express=require('express');
 const bcrypt=require("bcrypt");
-const Routed=express();
+const Routed=express.Router();
 const Users=require('../models/users');
 const Messages=require("../models/messages");
 const Friends=require("../models/Friends");
-
+const multer=require('multer');
+const path=require('path');
+const getData=require("../Controllers/dataController");
+const ImageControllers = require('../Controllers/ImageController');
 
 //this is to insert the user in database
 Routed.post('/', async (req, res) => {
@@ -52,7 +55,8 @@ const storedPassword=findUser.password;
     console.log(findUser._id)
     const result={
       id:findUser._id,
-      lastname:findUser.lastname
+      lastname:findUser.lastname,
+      imageUrl:findUser.imageUrl
     }
     res.status(200).json(result);
   } 
@@ -149,7 +153,7 @@ if(saveUser){
 }
 })
 
-//this is the route to retrieve data from the backend to the frontend
+//this is the route to retrieve posts from the backend to the frontend
 Routed.get('/posts',async(req,res)=>{
   try{
   const allPosts=await Messages.find().select(' content , sender , time ');
@@ -208,38 +212,23 @@ const receiverCheck=await Users.findById({_id:receiver});
 if(receiverCheck!=null){
 
   //let me check if you are not already friends
-  //let me find if the user is in the friends 
-  const findFriend=await Friends.findOne({sender});
-  if(findFriend==null){
-
- const newFriend1= await new Friends({
-    sender,
-    receiver
-  });
-await newFriend1.save();
-res.status(200).json(`${receiverCheck.firstname} was added successfully to your friends`);
+  const findFriend=await Friends.findOne({sender,receiver});
+  if(findFriend){
+    res.status(201).json(`you are friend with ${receiverCheck.lastname}`);
   }
   else{
-    //let me check if you are already friends
-    if(findFriend.receiver==receiver){
-      console.log("You are already friends");
-      res.status(201).json(`you and ${receiverCheck.firstname} you are already friends`);
+    const newFriend= await new Friends({
+      sender,
+      receiver
+    });
+  await newFriend.save();
+  res.status(200).json(`${receiverCheck.lastname} was added successfully to your friends`);
 
-    }else{
-        const newFriend= await new Friends({
-    sender,
-    receiver
-  });
-await newFriend.save();
-res.status(200).json(`${receiverCheck.firstname} was added successfully to your friends`);
-
-    }
   }
 }else{
   res.status(404).json("This person is not found on the system")
 }
 }else{
-  console.log("The sender is not exist in the system");
   res.status(404).json({"error":"The user is not exist in the system!"});
 }
   }catch(error){
@@ -249,23 +238,34 @@ res.status(200).json(`${receiverCheck.firstname} was added successfully to your 
 
 })
 
-//let me retrieve the friends from the database
-Routed.get("/friends",async(req,res)=>{
-  try{
-const {sender}=req.body;
-const myFriends=await Friends.find({sender}).select(" receiver , _id");
-if(myFriends.length>0){
-  console.log("You have some friends");
-  res.status(200).json(myFriends);
-}else if(myFriends.length==0){
-  console.log("You haven't any friends");
-  res.status(404).json('There is no friends on your account');
-}
-  }catch(error){
-console.log(error);
-res.status(500).json({"error":"something went wrong please try again latter"});
+Routed.post("/friends", async (req, res) => {
+  try {
+    const { sender } = req.body;
+
+    const myFriends = await Friends.find({ sender }).select('receiver');
+    if (myFriends.length > 0) {
+      console.log("You have some friends");
+
+      const receiverIds = myFriends.map(friend => friend.receiver); // Get an array of receiver ids
+
+      const friendInfo = await Users.find({ _id: { $in: receiverIds } }); // Find all users with matching receiver ids
+
+      if (friendInfo.length > 0) {
+        res.status(200).json(friendInfo);
+      } else {
+        console.log("No information found for any friend");
+        res.status(404).json("There is no information about this friend");
+      }
+    } else {
+      console.log("You don't have any friends");
+      res.status(404).json('There are no friends in your account');
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ "error": "Something went wrong. Please try again later." });
   }
-})
+});
+
 
 //this is to delete the friends from your list
 Routed.delete('/deleteFriend',async(req,res)=>{
@@ -277,6 +277,7 @@ Routed.delete('/deleteFriend',async(req,res)=>{
 const checkUserFromUsers=await Users.findOne({_id:receiver});
     const deleteFriend=await Friends.deleteOne({sender,receiver});
     if(deleteFriend){
+      console.log("deleted");
       res.status(200).json(`${checkUserFromUsers.firstname} was removed from your friends`);
     }else{
       res.status(400).json({"error":"There was error in deleting the friend!"});
@@ -287,4 +288,49 @@ const checkUserFromUsers=await Users.findOne({_id:receiver});
     res.status(400).json({"error":"There was error in deleting friend please try again latter!"});
   }
 })
-module.exports=Routed;
+
+
+
+// //this is to update the image
+const storage = multer.diskStorage({
+  destination: 'uploads/',
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({ storage });
+
+Routed.put('/updateImage', upload.single('image'), async (req, res) => {
+  // Routed.put('/updateImage', async (req, res) => {
+  const { userId } = req.body;
+  console.log(req.body)
+
+  try {
+    // Find the user to update the image
+    const user = await Users.findById(userId);
+    
+    if (user != null) {
+      const file = req.file;
+     
+      const imageUrl = file.filename;
+      
+      // Update the user's image URL
+      const updateImage = await Users.findByIdAndUpdate(userId,{imageUrl})
+      console.log(updateImage)
+      res.status(200).json({imageUrl });
+    } else {
+      res.status(404).json({ error: 'The user is not found in our system' });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Something went Wrong. Please try again later' });
+  }
+});
+
+//this is the route to retrive image from the uploads folder
+Routed.use('/uploads',express.static('uploads'));
+
+//this is the route to get the data
+Routed.post("/datum",getData);
+module.exports = Routed;

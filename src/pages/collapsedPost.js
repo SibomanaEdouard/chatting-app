@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+
  import React from "react";
 // import { RiMessage3Fill } from "react-icons/ri";
 import { RiSettings2Fill } from "react-icons/ri"
@@ -114,54 +114,13 @@ export const FirstsideBarCall=()=>{
 
     )
 }
-const Profile=()=>{
-    // const[profile1,setProfile]=useState(null);
-    // //to update profile
-    // const HandleChange=(e)=>{
-  
-    
-
-    // const file=e.target.files[0];
-    // const reader= new FileReader();
-    // reader.onload=()=>{
-    //     setProfile(reader.result);
-    // }
-    // if(file){
-    //     reader.readAsDataURL(file);
-    // }
-    // };
-//function to orient the user to the workspace
-// const FromProf=()=>{
-//     window.location.href='/work'
-// }
-    return(
-        <div>
-          
-{/* <form encType="multipart/form-data">
-
-    <input type="file"
-    id='image'
-    file={profile1}
-    name="profile"
-    accept="image/*"
-    onChange={HandleChange}
-    />
-    <button>ADD PROFILE</button>
-    <button onClick={FromProf}>NOT NOW</button>
-</form> 
-{profile1 && <img src={profile1} alt="This is the space of your profile."/>} */}
-
-        </div>
-    )
-}
-
 export const Collapsed=()=>{
     return (
         <div>
             <Header/>
           <FirstsideBarCall/>
         
-<Profile/>     
+    
 <Thought/>
 <Post/>  
 

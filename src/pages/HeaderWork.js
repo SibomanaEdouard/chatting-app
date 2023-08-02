@@ -9,13 +9,16 @@ import {RiUserReceivedFill} from "react-icons/ri"
 import {RiPhoneCameraFill} from "react-icons/ri"
 import{RiAdvertisementFill} from "react-icons/ri"
 import {RiArrowLeftSLine} from "react-icons/ri"
-import { Username } from "./addprofile";
+// import { Username } from "./addprofile";
 import {BsFillSendFill} from 'react-icons/bs'
 import {RiThumbUpFill} from 'react-icons/ri'
 import {RiDiscussFill} from 'react-icons/ri'
+import axios from "axios";
 
 
 const Id=localStorage.getItem('id');
+// const Image=localStorage.getItem('image');
+const username=localStorage.getItem("lastname");
 
 //this is for account
 const Myaccount=(e)=>{
@@ -72,9 +75,47 @@ window.location.href="/posts"
 
 //This the function to return The Header
 const Header=()=>{
+    const [image ,setImage]=useState(null);
+    //let me get  the data from the backend
+const getData=async()=>{
+    try{
+    //this is to get the id of the user from local storage
+    const user=localStorage.getItem('id');
+    const response=await axios.post("http://localhost:5500/sign/datum",{user});
+    if(response.status===200){
+        const data=await response.data;
+        setImage(data.imageUrl);
+    }else{
+        throw new Error(response.error)
+    }
+}
+catch(error){
+    console.log(error);
+    alert("Something went wrong please try again latter");
+}
+}
+getData();
     return(
         <div className="firstHeader">
-          <Username/> 
+            <div className="username"
+            style={{
+                position:"absolute",
+                top: "0%",
+                right: "0%",
+            }}
+>
+<span className="p-3">{username}</span>
+<img src={`http://localhost:5500/sign/uploads/${image}`} 
+         
+         alt="Profile"
+          style={{width:"10%",height:"10%",
+        borderRadius:"50%",
+        }}
+/>
+</div>
+<div>
+          
+          </div>  
 <RiMessage3Fill className="iconH"/>
 <h1>ENPEACE</h1>
 
@@ -255,7 +296,7 @@ const GetPost=()=>{
         if(Response.ok){
           
       const MessagesFromBack=await Response.json();
-    console.log(MessagesFromBack.MessageWithOwner)
+   
 
 
 
@@ -294,18 +335,18 @@ return(
         ))}
        </ul>
     ):(
-        <h1>No postfound</h1>
+        <h1>No post found</h1>
     )}
     </div>
 )
 }
 export  const Post=()=>{
-    const [input,setInput]=useState("");
-    const ChangeHandle=(e)=>{
-        e.preventDefault();
-     setInput(e.target.value);
+    // const [input,setInput]=useState("");
+    // const ChangeHandle=(e)=>{
+    //     e.preventDefault();
+    //  setInput(e.target.value);
     
-    }
+    // }
     
       
     return(

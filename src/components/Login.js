@@ -1,12 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { NavigationTab } from "./Home";
 import home from "../Images/home.png";
 import {FaEye, FaEyeSlash} from 'react-icons/fa'
-// import  { useContext } from 'react';
-// import {UserContext  } from '../pages/userContext';
-
-
 
 // updating password
 const UpdatePass=(e)=>{
@@ -19,7 +15,7 @@ export const ImageLogo=()=>{
   return (
     <div className="imageLogin">
 
-    <img src={home} alt="This is the time to enjoy with others" />
+    {/* <img src={home} alt="This is the time to enjoy with others" /> */}
     </div>
   )
 }
@@ -31,10 +27,9 @@ const HandleSigning=(e)=>{
     e.preventDefault();
     window.location.href='/sign';
 }
-
 //this is the login in foprm
 function LoginForm() {
-    const [inputs, setInputs] = useState({
+     const [inputs, setInputs] = useState({
       email:"",
       password:""
     });
@@ -67,15 +62,20 @@ function LoginForm() {
 
       //to check is the response is ok
       if(response.ok){
-        const user=await response.json();
+        const users=await response.json();
 
         //To take information from the backend
-        const Lastname=user.lastname;
-        const Id=user.id;
+        const Lastname=users.lastname;
+        const Id=users.id;
+        const Image=users.imageUrl;
         localStorage.setItem('lastname', Lastname);
         localStorage.setItem('id', Id);
+        localStorage.setItem('imageUrl',Image);
 
-        
+      
+
+      // Update the response data using the updateResponseData function
+   
      setInputs({
       email:"",
       password:""
@@ -161,7 +161,7 @@ function LoginForm() {
         </h1> 
         <h1> <span className="Ask">New Here ?</span><button onClick={HandleSigning} className="buttons">SignUp</button></h1>
        
-       
+<h1 className="text-danger"></h1>       
       </div>
   
       </>
@@ -169,8 +169,4 @@ function LoginForm() {
   }
   
   export default LoginForm;
-
-
-
-
 
