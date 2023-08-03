@@ -208,53 +208,53 @@ export const GetFriendsOnly=()=>{
     
     displayFriends();
 
-//     return(
-//         <div className="text-start">
-//   <div className="row">
-//     <h1 className="text-start">Friends</h1>
-//     {friend.length > 0 ? (
-//       <ul className="list-unstyled d-flex flex-wrap">
-//         {friend.map((chanta) => (
-//           <li key={chanta._id} className="text-start m-2" style={{ flexBasis: '50%', maxWidth: '50%' }}>
-//             <img
-//               src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
-//               style={{ width: '10%', height: 'auto', borderRadius: '50%' }}
-//               alt=""
-//               className="m-2"
-//             />
-//             <span className="m-2">{chanta.lastname}</span>
-//           </li>
-//         ))}
-//       </ul>
-//     ) : (
-//       <h4>No friend found</h4>
-//     )}
-//   </div>
-// </div>
-//     )
-
-return ( <div id="sidebar" className="bg-light">
+    return(
+        <div className="text-start">
+  <div className="row">
+    <h1 className="text-start">Friends</h1>
+    {friend.length > 0 ? (
+      <ul className="list-unstyled d-flex flex-wrap">
+        {friend.map((chanta) => (
+          <li key={chanta._id} className="text-start m-2" style={{ flexBasis: '50%', maxWidth: '50%' }}>
+            <img
+              src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
+              style={{ width: '10%', height: 'auto', borderRadius: '50%' }}
+              alt=""
+              className="m-2"
+            />
+            <span className="m-2">{chanta.lastname}</span>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <h4>No friend found</h4>
+    )}
+  </div>
+</div>
+    )
+    }
+// return ( <div id="sidebar" className="bg-light">
    
     
-      {/* <div className="p-3"> */}
-        {/* <div className="d-flex justify-content-between align-items-center"> */}
-          {/* <h3 className="m-0">Logo</h3> */}
-          {/* <button
-            type="button"
-            id="sidebarCollapse"
-            className="btn btn-light d-md-none"
-            data-bs-toggle="collapse"
-            data-bs-target="#friendsCollapse"
-            aria-expanded="false"
-            aria-controls="friendsCollapse"
-          >
-            <i className="bi bi-people"></i>
-          </button> */}
-        {/* </div> */}
-      {/* </div> */}
-      {/* <div className="collapse show" id="friendsCollapse"> */}
-        <GetFriendsOnly />
-      {/* </div> */}
-    </div>
-  );
-};
+//       {/* <div className="p-3"> */}
+//         {/* <div className="d-flex justify-content-between align-items-center"> */}
+//           {/* <h3 className="m-0">Logo</h3> */}
+//           {/* <button
+//             type="button"
+//             id="sidebarCollapse"
+//             className="btn btn-light d-md-none"
+//             data-bs-toggle="collapse"
+//             data-bs-target="#friendsCollapse"
+//             aria-expanded="false"
+//             aria-controls="friendsCollapse"
+//           >
+//             <i className="bi bi-people"></i>
+//           </button> */}
+//         {/* </div> */}
+//       {/* </div> */}
+//       {/* <div className="collapse show" id="friendsCollapse"> */}
+//         <GetFriendsOnly />
+//       {/* </div> */}
+//     </div>
+//   );
+// };

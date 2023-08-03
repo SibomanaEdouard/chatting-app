@@ -10,14 +10,30 @@ import { GetFriends, GetFriendsOnly } from "./Recommands";
 //this is sidebar for messages
 const FriendBar=()=>{
     
-    return(
-        <div className="firstsideb navbar w-15"
-        style={{backgroundColor:"#D9D9D9"}}
-        >
-          <GetFriendsOnly/>
+return ( <div id="sidebar" style={{backgroundColor:"#D9D9D9",width:"10%",height:"80%"}} className="">
+   
+    
+      <div className="p-3">
+        <div className="d-flex justify-content-between align-items-center">
+          <button
+            type="button"
+            id="sidebarCollapse"
+            className="btn btn-light d-md-none"
+            data-bs-toggle="collapse"
+            data-bs-target="#friendsCollapse"
+            aria-expanded="false"
+            aria-controls="friendsCollapse"
+          >
+            <i className="bi bi-people"></i>
+          </button>
         </div>
-    )
-}
+      </div>
+      <div className="collapse show" id="friendsCollapse">
+        <GetFriendsOnly />
+      </div>
+    </div>
+  );
+};
 //this is the input field of message
 const MessageForm=()=>{
     const [input,setInput]=useState("");
