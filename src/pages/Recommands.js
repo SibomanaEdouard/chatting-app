@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { FirstsideBar } from "./HeaderWork";
 import Header from "./HeaderWork";
 import axios from "axios";
@@ -70,7 +70,6 @@ return(
 )
 }
 
-
 export const Recommends=()=>{
 
     return(
@@ -81,90 +80,106 @@ export const Recommends=()=>{
         </div>
     )
 }
-
-//this is the components to display the friends of the user 
-export const GetFriends=()=>{
-//this is the function to send the request to the backend server
-const sender=localStorage.getItem("id");
-const [friend,setFriend]=useState([]);
-const displayFriends=async()=>{
-    try{
-    const response=await fetch("http://localhost:5500/sign/friends",{
-        method:'POST',
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({sender})
+// This is the components to display the friends of the user
+export const GetFriends = () => {
+    // This is to get id from localStorage
+    const sender = localStorage.getItem('id');
+    const [friend, setFriend] = useState([]);
+  
+    // This is the function to display the friends
+    const displayFriends = async () => {
+      try {
+        // This is the function to send the request to the backend server
+        const response = await fetch('http://localhost:5500/sign/friends', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sender }),
+        });
+  
+        if (response.ok) {
+          const friendInfo = await response.json();
+          setFriend(friendInfo);
+        } else {
+          throw new Error('Error fetching friends data');
+        }
+      } catch (error) {
+        alert('Something went wrong. Please try again later!');
+        console.log(error);
+      }
+    };
+  
+    useEffect(() => {
+      displayFriends();
     });
-    if(response.ok){
-        const friendInfo=await response.json();
-        setFriend(friendInfo);
-    }
-    else{
-alert("There is error!!!");
-    }
-}catch(error){
-alert("something went wrong ");
-console.log(error);
-}
-}
-
-displayFriends();
-
-
-//let  me destroy the friendship
-const deleteFriend=async(sender,receiver)=>{
-    try{
-        const response=await axios.delete("http://localhost:5500/sign/deleteFriend",{sender,receiver});     
-// alert(response.data);
-alert("fine");
-console.log("fine");
-    }catch(error){
-console.error(error);
-alert(error);
-    }
-
-}
-
-//function to orient the user to the messages
-const message=(e)=>{
-    e.preventDefault();
-    window.location.href='/messages'
-}
-
-return(<div className="container">
-    <div className="row">
-<h1 className="text-start">Friends</h1>
-  {friend.length >0 ? (
-    <ul className="row">
-   {friend.map((chanta)=>(
-    <li key={chanta._id} className="col-md-4 border border-0 p-2 m-2 text-start" style={{listStyle:"none",backgroundColor:'#F6F6F6',width:"40%"}}>
-    
-        <span>{chanta.lastname}</span><br/> 
-        <span style={{color:"#888686"}}>
-        mutual friends
-        </span>
-        <img src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
-        style={{width:"15%",height:"10vh",marginLeft:"48%"}}
-        className="text-end"
-        alt="profile"
-        />
-        <br/>
-     <div style={{backgroundColor:"#D9D9D9",marginButton:"0%"}}>
-        <span className="text-danger" onClick={()=>deleteFriend(sender,chanta._id)}>Remove friend</span>
-      
-        <span className="text-center" style={{color:"#407BFF",marginLeft:"4%"}} onClick={message}>Message</span>
-       
-     <span className="fw-bold" style={{marginLeft:"30%"}}>View profile</span>
-    
-     </div>
-        </li>
-   ))}
-   </ul>
-  ):(
-    <h4>No friend found</h4>
-  )}
-  </div>
-</div>)}
-
+  
+    // Let me destroy the friendship
+    const deleteFriend = async (receiverId) => {
+      try {
+        const response = await axios.delete('http://localhost:5500/sign/deleteFriend', {
+          data: { sender, receiver: receiverId },
+        });
+  
+        if (response.status === 200) {
+          // Filter out the friend with the given receiverId from the state
+          setFriend((prevFriends) => prevFriends.filter((friend) => friend._id !== receiverId));
+          alert(response.data.message);
+        } else {
+          throw new Error(response.data.error);
+        }
+      } catch (error) {
+        console.error(error);
+        alert('An error occurred while deleting the friendship. Please try again later.');
+      }
+    };
+  
+    const message = (e) => {
+      e.preventDefault();
+      window.location.href = '/messages';
+    };
+  
+    return (
+      <div className="">
+        <div className="row">
+          <h1 className="text-start">Friends</h1>
+          {friend.length > 0 ? (
+            <ul className="row">
+              {friend.map((chanta) => (
+                <li
+                  key={chanta._id}
+                  className="col-md-4 border border-0 p-2 m-2 text-start"
+                  style={{ listStyle: 'none', backgroundColor: '#F6F6F6', width: '40%' }}
+                >
+                  <span className="fw-bold">{chanta.lastname}</span>
+                  <br />
+                  <span style={{ color: '#888686' }}>mutual friends</span>
+                  <img
+                    src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
+                    style={{ width: '15%', height: '10vh', marginLeft: '48%' }}
+                    className="text-end"
+                    alt="profile"
+                  />
+                  <br />
+                  <div style={{ backgroundColor: '#D9D9D9', marginButton: '0%' }}>
+                    <span className="text-danger" onClick={() => deleteFriend(chanta._id)}>
+                      Remove friend
+                    </span>
+                    <span className="text-center" style={{ color: '#407BFF', marginLeft: '4%' }} onClick={message}>
+                      Message
+                    </span>
+                    <span className="fw-bold" style={{ marginLeft: '30%' }}>
+                      View profile
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <h4>No friend found</h4>
+          )}
+        </div>
+      </div>
+    );
+  };
 
 //this is to display the freinds without additional elements
 export const GetFriendsOnly=()=>{
@@ -192,19 +207,54 @@ export const GetFriendsOnly=()=>{
     }
     
     displayFriends();
-    return(<div>
-      {friend.length >0 ? (
-        <ul>
-       {friend.map((chanta)=>(
-        <li key={chanta._id}>
-            <img src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
-        style={{width:"10%",height:"10%"}}
-        />
-            {chanta.lastname}
-            </li>
-       ))}
-       </ul>
-      ):(
-        <h4>No friend found</h4>
-      )}
-    </div>)}
+
+//     return(
+//         <div className="text-start">
+//   <div className="row">
+//     <h1 className="text-start">Friends</h1>
+//     {friend.length > 0 ? (
+//       <ul className="list-unstyled d-flex flex-wrap">
+//         {friend.map((chanta) => (
+//           <li key={chanta._id} className="text-start m-2" style={{ flexBasis: '50%', maxWidth: '50%' }}>
+//             <img
+//               src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
+//               style={{ width: '10%', height: 'auto', borderRadius: '50%' }}
+//               alt=""
+//               className="m-2"
+//             />
+//             <span className="m-2">{chanta.lastname}</span>
+//           </li>
+//         ))}
+//       </ul>
+//     ) : (
+//       <h4>No friend found</h4>
+//     )}
+//   </div>
+// </div>
+//     )
+
+return ( <div id="sidebar" className="bg-light">
+   
+    
+      {/* <div className="p-3"> */}
+        {/* <div className="d-flex justify-content-between align-items-center"> */}
+          {/* <h3 className="m-0">Logo</h3> */}
+          {/* <button
+            type="button"
+            id="sidebarCollapse"
+            className="btn btn-light d-md-none"
+            data-bs-toggle="collapse"
+            data-bs-target="#friendsCollapse"
+            aria-expanded="false"
+            aria-controls="friendsCollapse"
+          >
+            <i className="bi bi-people"></i>
+          </button> */}
+        {/* </div> */}
+      {/* </div> */}
+      {/* <div className="collapse show" id="friendsCollapse"> */}
+        <GetFriendsOnly />
+      {/* </div> */}
+    </div>
+  );
+};

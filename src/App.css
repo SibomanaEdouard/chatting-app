@@ -12,7 +12,7 @@ body{
 *{
   color:black;
   text-decoration: none;
- 
+ font-family: inter;
   box-sizing: border-box;
 }
 
@@ -515,6 +515,7 @@ font-size: xx-large;
  top:9%;
  text-align: left;
  width: 10%;
+ height: auto;
  bottom: 0%;
  font-family: inter;
 }
@@ -615,15 +616,6 @@ left: 3%;
    
    
   
-  }
-  .users li{
-   /* margin-right:2% ; */
-   
-
-  }
-  .users.container {
-    /* margin-left: 20px; */
-    /* margin-right: 20px; */
   }
   .recommendsCont{
     overflow: scroll;
@@ -1001,6 +993,10 @@ display: inline;
   font-family: inter;
   color: black;
 }
-.friendlist{
-  background-color: #F6F6F6;
+li{
+  font-family: inter;
+  list-style: none;
+}
+.userFriendlist{
+  text-align: left;
 }

@@ -267,21 +267,17 @@ Routed.post("/friends", async (req, res) => {
 });
 
 
-//this is to delete the friends from your list
+//this is to delete the friend from your list
 Routed.delete('/deleteFriend',async(req,res)=>{
   try{
     const {sender,receiver}=req.body;
-    const findFriendToDelete=await Friends.findOne({sender,receiver});
-    if(findFriendToDelete!=null){
-//let me check in the users then find his or her name
-const checkUserFromUsers=await Users.findOne({_id:receiver});
-    const deleteFriend=await Friends.deleteOne({sender,receiver});
+    // const findFriendToDelete=await Friends.findOne({sender,receiver});
+    const deleteFriend=await Friends.findOneAndDelete({sender,receiver});
     if(deleteFriend){
-      console.log("deleted");
-      res.status(200).json(`${checkUserFromUsers.firstname} was removed from your friends`);
+    
+      res.status(200).json({message:"The   friend was deleted successfully"});
     }else{
       res.status(400).json({"error":"There was error in deleting the friend!"});
-    }
   }
   }catch(error){
     console.log(error);

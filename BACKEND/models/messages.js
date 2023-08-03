@@ -23,8 +23,6 @@ const Messages=new mongoose.Schema({
     time:{
         type:Date,
         default:Date.now
-    }
- 
-    
+    }    
 });
 module.exports=mongoose.model('Messages',Messages,'messages')

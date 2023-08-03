@@ -11,10 +11,10 @@ import { GetFriends, GetFriendsOnly } from "./Recommands";
 const FriendBar=()=>{
     
     return(
-        <div className="firstsidebar">
-            <h1>Friends</h1>
+        <div className="firstsideb navbar w-15"
+        style={{backgroundColor:"#D9D9D9"}}
+        >
           <GetFriendsOnly/>
-
         </div>
     )
 }
