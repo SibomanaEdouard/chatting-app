@@ -12,8 +12,10 @@ body{
 *{
   color:black;
   text-decoration: none;
+ 
   box-sizing: border-box;
 }
+
 
 .NavigationTab{
 background-color:#A0BDFF;
@@ -998,4 +1000,7 @@ display: inline;
 .settingFunc,h1,p{
   font-family: inter;
   color: black;
+}
+.friendlist{
+  background-color: #F6F6F6;
 }

@@ -104,14 +104,15 @@ getData();
                 right: "0%",
             }}
 >
-<span className="p-3">{username}</span>
+
 <img src={`http://localhost:5500/sign/uploads/${image}`} 
          
          alt="Profile"
-          style={{width:"10%",height:"10%",
+          style={{width:"14%",height:"8vh",
         borderRadius:"50%",
         }}
 />
+<span className="p-3">{username}</span>
 </div>
 <div>
           

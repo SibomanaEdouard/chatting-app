@@ -10,23 +10,13 @@ export const Friends=()=>{
             <FirstsideBar/>
          
             <Header/>
-            <h1 className="text-start"
+            {/* <h1 className="text-start"
             style={{
               marginLeft:"12%"  
             }}
-            >Friends</h1>
+            >Friends</h1> */}
             <GetFriends/>
-            {/* <FriendCont/>        */}
+         
         </div>
     )
 }
-
-//this is the  next 
-// const FriendCont=()=>{
-
-    // return(
-        // <div className="users">
-        //   <h1>Friends</h1>
-        // </div>
-    // )
-// }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef,useState } from "react";
+import { useRef,useState,useEffect } from "react";
 import axios from "axios";
 import {BsCameraFill} from "react-icons/bs"
 import { FirstsideBar } from "./HeaderWork";
@@ -24,6 +24,7 @@ const fileInputRef = useRef(null);
 
 const handleButtonClick = () => {
   fileInputRef.current.click();
+ 
 };
 
     const handleFileChange = async (e) => {
@@ -44,9 +45,7 @@ const handleButtonClick = () => {
           });
       console.log(Image);
           const imageUrl = response.data.imageUrl;
-      
-          // Save the image URL to MongoDB or perform any other necessary actions
-          console.log('Image URL:', imageUrl);
+          window.location.reload();
         } catch (error) {
           console.error('Image upload failed:', error);
         }
@@ -82,7 +81,7 @@ const handleButtonClick = () => {
 <div className="text-start m-3">
 <img src={`http://localhost:5500/sign/uploads/${image}`} 
 alt="profile"
-style={{width:"10%",borderRadius:"50%"}}
+style={{width:"10%",height:"10vh",borderRadius:"50%"}}
 />
 <span className="text-white p-3">{username}</span>
 </div>
@@ -116,7 +115,12 @@ Edit cover photo
             </div> 
             </div>
             </div>
-
+            <input
+        type="file"
+        style={{ display: 'none' }}
+        ref={fileInputRef}
+        onChange={handleFileChange}
+      />
         </div>
     )
 }
@@ -161,170 +165,210 @@ const GoFriends=()=>{
     
 }
 
-//this is about content
-const About=()=>{
+//this is the component about
+const About = () => {
+  const [phone, setPhone] = useState("");
+  const [school, setSchool] = useState("");
+  const [home, setHome] = useState("");
+  const [link, setLink] = useState("");
+  const [hobby, setHobby] = useState("");
+  const [work, setWork] = useState("");
+  const [image, setImage] = useState(null);
 
-  //let me get the user information before edit them
-  const [phone,setPhone]=useState('');
-  const [school,setSchool]=useState('');
-  const [home,setHome]=useState('');
-  const [link,setLink]=useState('');
-  const [hobby,setHobby]=useState('');
-  const [work,setWork]=useState('');
-  const [image,setImage]=useState(null)
+  const userData = async () => {
+    const user = localStorage.getItem("id");
+    try {
+      const response = await axios.post("http://localhost:5500/sign/datum", {
+        user,
+      });
 
-  //the function to fetch data from the backend before being edited
-const userData=async()=>{
-const user=localStorage.getItem('id');
-try{
-const response=await axios.post("http://localhost:5500/sign/datum",{user});
+      if (response.status === 200) {
+        const data = await response.data;
+        setPhone(data.phone);
+        setSchool(data.school);
+        setHome(data.home);
+        setLink(data.link);
+        setHobby(data.hobby);
+        setWork(data.work);
+        setImage(data.imageUrl);
+      } else {
+        throw new Error(response.error);
+      }
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
+  };
 
-if(response.status===200){
-const data=await response.data;
+  useEffect(() => {
+    userData();
+  }, []);
 
-//let me distribute data
-setPhone(data.phone);
-setSchool(data.school);
-setHome(data.home);
-setLink(data.link);
-setHobby(data.hobby);
-setWork(data.work);
-setImage(data.imageUrl)
-}else{
-  throw new Error(response.error);
-}
-}catch(error){
-  console.log(error);
-  alert(error)
-}
-}
+  const changeWork = (e) => {
+    setWork(e.target.value);
+  };
 
-//let invoke the function to display the data
-userData();
-const changeSchool=(e)=>{
-  e.preventDefault();
-  setSchool(e.target.value);
+  const updateInfo = async () => {
+    try {
+      //send the request to the backend
+      const response = await axios.put("http://localhost:5500/sign/updateinfo", {
+        user: localStorage.getItem("id"),
+        home,
+        hobby,
+        school,
+        work,
+        link,
+        phone,
+      });
+      if (response.status === 200) {
+        alert(response.data.message);
+        window.location.reload();
+      } else {
+        throw new Error(response.data.error);
+      }
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
+  };
 
-}
-
-    return(<div className="aboutcontent">
-
-        <h1 className="text-start m-4 pt-1">About</h1>
-        <form>
-<div className="row text-start p-4">
-<div className="col-md-6">
-<img src={`http://localhost:5500/sign/uploads/${image}`} 
-alt="profile"
-style={{width:"5%",borderRadius:"50%"}}
-/>
-<span className="fw-bold p-2">work<br/>
-<input 
-value={work}
-type="text"
-onChange={(e)=>(e.target.value)}
-name="work"
-className="border-0"
-style={{backgroundColor:"#D9D9D9"}}
-/>
-</span>
-</div>
-
-<div className="col-md-6">
-  <BiHeart
-  style={{borderRadius:"50%",
-  backgroundColor:"#A0BDFF",
-  padding:"1%"
-  }}
-  className="fs-2"
-  />
-<span className="fw-bold p-2">Hobbies and interest<br/>
-<input 
-value={hobby}
-type="text"
-onChange={(e)=>(e.target.value)}
-name="hobby"
-className="border-0"
-style={{backgroundColor:"#D9D9D9"}}
-/>
-</span>
-</div>
-
-<div className="col-md-6">
-  <AiOutlinePlus  style={{borderRadius:"50%",
-  backgroundColor:"#A0BDFF",
-  padding:"1%"
-  }}
-  className="fs-2"
-  />
-<span className="fw-bold p-2">Add school<br/>
-<input 
-value={school}
-type="text"
-onChange={changeSchool}
-name="school"
-className="border-0"
-style={{backgroundColor:"#D9D9D9"}}
-/>
-</span>
-</div>
-
-<div className="col-md-6">
-  <FiSmartphone
-  style={{borderRadius:"50%",
-  backgroundColor:"#A0BDFF",
-  padding:"1%"
-  }}
-  className="fs-2"
-  />
-<span className="fw-bold p-2">phone<br/>
-<input 
-value={phone}
-type="text"
-onChange={(e)=>(e.target.value)}
-name="phone"
-className="border-0"
-style={{backgroundColor:"#D9D9D9"}}
-/>
-</span>
-</div>
-
-<div className="col-md-6">
-  <GiWorld className="fs-2"/>
-<span className="fw-bold p-2">Home<br/>
-<input 
-value={home}
-type="text"
-onChange={(e)=>(e.target.value)}
-name="work"
-className="border-0"
-style={{backgroundColor:"#D9D9D9"}}
-/>
-</span>
-</div>
-
-<div className="col-md-6">
-  <BiUser
-  style={{borderRadius:"50%",
-  backgroundColor:"#A0BDFF",
-  padding:"1%"
-  }}
-  className="fs-2"
-  />
-<span className="fw-bold p-2">instagram link<br/>
-<input 
-value={link}
-type="text"
-onChange={(e)=>(e.target.value)}
-name="work"
-className="border-0"
-style={{backgroundColor:"#D9D9D9"}}
-/>
-</span>
-</div>
-</div>
-</form>
-    </div>)
-}
+  return (
+    <div className="aboutcontent">
+      <h1 className="text-start m-4 pt-1">About</h1>
+      <form onSubmit={updateInfo}>
+        <div className="row text-start p-4">
+          <div className="col-md-6">
+            <img
+              src={`http://localhost:5500/sign/uploads/${image}`}
+              alt="profile"
+              style={{ width: "5%", borderRadius: "50%" }}
+            />
+            <span className="fw-bold p-2">
+              work
+              <br />
+              <input
+                value={work}
+                type="text"
+                onChange={changeWork}
+                name="work"
+                className="border-0"
+                style={{ backgroundColor: "#D9D9D9", marginLeft: "5.5%" }}
+              />
+            </span>
+          </div>
+          <div className="col-md-6">
+            <BiHeart
+              style={{
+                borderRadius: "50%",
+                backgroundColor: "#A0BDFF",
+                padding: "1%",
+              }}
+              className="fs-2"
+            />
+            <span className="fw-bold p-2">
+              Hobbies and interest
+              <br />
+              <input
+                value={hobby}
+                type="text"
+                onChange={(e) => setHobby(e.target.value)}
+                name="hobby"
+                className="border-0"
+                style={{ backgroundColor: "#D9D9D9", marginLeft: "5.5%" }}
+              />
+            </span>
+          </div>
+          <div className="col-md-6">
+            <AiOutlinePlus
+              style={{
+                borderRadius: "50%",
+                backgroundColor: "#A0BDFF",
+                padding: "1%",
+              }}
+              className="fs-2"
+            />
+            <span className="fw-bold p-2">
+              Add school
+              <br />
+              <input
+                value={school}
+                type="text"
+                onChange={(e) => setSchool(e.target.value)}
+                name="school"
+                className="border-0"
+                style={{ backgroundColor: "#D9D9D9", marginLeft: "5.5%" }}
+              />
+            </span>
+          </div>
+          <div className="col-md-6">
+            <FiSmartphone
+              style={{
+                borderRadius: "50%",
+                backgroundColor: "#A0BDFF",
+                padding: "1%",
+              }}
+              className="fs-2"
+            />
+            <span className="fw-bold p-2">
+              phone
+              <br />
+              <input
+                value={phone}
+                type="text"
+                onChange={(e) => setPhone(e.target.value)}
+                name="phone"
+                className="border-0"
+                style={{ backgroundColor: "#D9D9D9", marginLeft: "5.5%" }}
+              />
+            </span>
+          </div>
+          <div className="col-md-6">
+            <GiWorld className="fs-2" />
+            <span className="fw-bold p-2">
+              Home
+              <br />
+              <input
+                value={home}
+                type="text"
+                onChange={(e) => setHome(e.target.value)}
+                name="home"
+                className="border-0"
+                style={{ backgroundColor: "#D9D9D9", marginLeft: "5.5%" }}
+              />
+            </span>
+          </div>
+          <div className="col-md-6">
+            <BiUser
+              style={{
+                borderRadius: "50%",
+                backgroundColor: "#A0BDFF",
+                padding: "1%",
+              }}
+              className="fs-2"
+            />
+            <span className="fw-bold p-2">
+              instagram link
+              <br />
+              <input
+                value={link}
+                type="text"
+                onChange={(e) => setLink(e.target.value)}
+                name="link"
+                className="border-0"
+                style={{ backgroundColor: "#D9D9D9", marginLeft: "5.5%" }}
+              />
+            </span>
+          </div>
+        </div>
+        <div>
+          <button type="submit">
+            <AiOutlineCheck />
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 //this is to render account content
 export const Account=()=>{

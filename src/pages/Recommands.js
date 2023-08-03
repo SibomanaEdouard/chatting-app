@@ -130,31 +130,41 @@ const message=(e)=>{
     window.location.href='/messages'
 }
 
-return(<div>
+return(<div className="container">
+    <div className="row">
+<h1 className="text-start">Friends</h1>
   {friend.length >0 ? (
-    <ul>
+    <ul className="row">
    {friend.map((chanta)=>(
-    <li key={chanta._id}>
+    <li key={chanta._id} className="col-md-4 border border-0 p-2 m-2 text-start" style={{listStyle:"none",backgroundColor:'#F6F6F6',width:"40%"}}>
+    
         <span>{chanta.lastname}</span><br/> 
         <span style={{color:"#888686"}}>
         mutual friends
-        </span><br/>
-     
+        </span>
+        <img src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
+        style={{width:"15%",height:"10vh",marginLeft:"48%"}}
+        className="text-end"
+        alt="profile"
+        />
+        <br/>
+     <div style={{backgroundColor:"#D9D9D9",marginButton:"0%"}}>
         <span className="text-danger" onClick={()=>deleteFriend(sender,chanta._id)}>Remove friend</span>
       
-        <span className="" style={{color:"#407BFF"}} onClick={message}>Message</span>
-        <img src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
-        style={{width:"10%",height:"10%"}}
-        />
+        <span className="text-center" style={{color:"#407BFF",marginLeft:"4%"}} onClick={message}>Message</span>
        
-     <span className="fw-bold">View profile</span>
+     <span className="fw-bold" style={{marginLeft:"30%"}}>View profile</span>
+    
+     </div>
         </li>
    ))}
    </ul>
   ):(
     <h4>No friend found</h4>
   )}
+  </div>
 </div>)}
+
 
 //this is to display the freinds without additional elements
 export const GetFriendsOnly=()=>{
