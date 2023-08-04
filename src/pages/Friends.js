@@ -10,11 +10,6 @@ export const Friends=()=>{
             <FirstsideBar/>
          
             <Header/>
-            {/* <h1 className="text-start"
-            style={{
-              marginLeft:"12%"  
-            }}
-            >Friends</h1> */}
             <GetFriends/>
          
         </div>

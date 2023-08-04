@@ -8,11 +8,8 @@ import { Friends } from "./Friends";
 import { GetFriends, GetFriendsOnly } from "./Recommands";
 
 //this is sidebar for messages
-const FriendBar=()=>{
-    
-return ( <div id="sidebar" style={{backgroundColor:"#D9D9D9",width:"10%",height:"80%"}} className="">
-   
-    
+const FriendBar=()=>{    
+return ( <div id="sidebar" style={{backgroundColor:"#D9D9D9",width:"25%",height:"95vh",marginBottom:"0%"}} className="">   
       <div className="p-3">
         <div className="d-flex justify-content-between align-items-center">
           <button
@@ -34,6 +31,7 @@ return ( <div id="sidebar" style={{backgroundColor:"#D9D9D9",width:"10%",height:
     </div>
   );
 };
+
 //this is the input field of message
 const MessageForm=()=>{
     const [input,setInput]=useState("");

@@ -138,9 +138,9 @@ export const GetFriends = () => {
     };
   
     return (
-      <div className="">
+      <div className="" style={{marginLeft:"15%"}}>
         <div className="row">
-          <h1 className="text-start">Friends</h1>
+          <h1 className="text-start fs-3">Friends</h1>
           {friend.length > 0 ? (
             <ul className="row">
               {friend.map((chanta) => (
@@ -232,29 +232,4 @@ export const GetFriendsOnly=()=>{
   </div>
 </div>
     )
-    }
-// return ( <div id="sidebar" className="bg-light">
-   
-    
-//       {/* <div className="p-3"> */}
-//         {/* <div className="d-flex justify-content-between align-items-center"> */}
-//           {/* <h3 className="m-0">Logo</h3> */}
-//           {/* <button
-//             type="button"
-//             id="sidebarCollapse"
-//             className="btn btn-light d-md-none"
-//             data-bs-toggle="collapse"
-//             data-bs-target="#friendsCollapse"
-//             aria-expanded="false"
-//             aria-controls="friendsCollapse"
-//           >
-//             <i className="bi bi-people"></i>
-//           </button> */}
-//         {/* </div> */}
-//       {/* </div> */}
-//       {/* <div className="collapse show" id="friendsCollapse"> */}
-//         <GetFriendsOnly />
-//       {/* </div> */}
-//     </div>
-//   );
-// };
+}
