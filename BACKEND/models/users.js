@@ -1,5 +1,3 @@
-
-const { date } = require('joi');
 const mongoose=require('mongoose');
 const usersSchema=new mongoose.Schema({
     firstname:{

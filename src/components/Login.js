@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useState } from "react";
 import { NavigationTab } from "./Home";
 import home from "../Images/home.png";
@@ -15,7 +15,7 @@ export const ImageLogo=()=>{
   return (
     <div className="imageLogin">
 
-    {/* <img src={home} alt="This is the time to enjoy with others" /> */}
+    <img src={home} alt="This is the time to enjoy with others" />
     </div>
   )
 }
@@ -160,8 +160,7 @@ function LoginForm() {
         <h1><span className="Ask">Forget your password? </span><button onClick={UpdatePass} className="buttons">Reset</button>
         </h1> 
         <h1> <span className="Ask">New Here ?</span><button onClick={HandleSigning} className="buttons">SignUp</button></h1>
-       
-<h1 className="text-danger"></h1>       
+           
       </div>
   
       </>

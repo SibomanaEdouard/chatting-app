@@ -96,32 +96,28 @@ catch(error){
 }
 getData();
     return(
-        <div className="firstHeader">
-            <div className="username"
-            style={{
-                position:"absolute",
-                top: "0%",
-                right: "0%",
-            }}
->
-
-<img src={`http://localhost:5500/sign/uploads/${image}`} 
-         
-         alt="Profile"
-          style={{width:"14%",height:"8vh",
-        borderRadius:"50%",
-        }}
-/>
-<span className="p-3">{username}</span>
+<div className="firstHeader row d-flex" style={{ backgroundColor: "#A0BDFF" }}>
+  <div className="d-inline p-4 col-md-6">  
+    <span>
+      <RiMessage3Fill className="fs-2" />
+    </span>
+    <span className="fw-bold p-2">ENPEACE</span>
+  </div>
+  <div className="username col-md-6" style={{ padding: "0.3%" }}>
+    <img
+      src={`http://localhost:5500/sign/uploads/${image}`}
+      alt="Profile"
+      style={{
+        width: "8vh",
+        height: "8vh",
+        borderRadius: "50%",
+      }}
+    />
+    <span className="p-3">{username}</span>
+  </div>
 </div>
-<div>
-          
-          </div>  
-<RiMessage3Fill className="iconH"/>
-<h1>ENPEACE</h1>
-
-        </div>
     )
+
 }
 
 
@@ -342,13 +338,6 @@ return(
 )
 }
 export  const Post=()=>{
-    // const [input,setInput]=useState("");
-    // const ChangeHandle=(e)=>{
-    //     e.preventDefault();
-    //  setInput(e.target.value);
-    
-    // }
-    
       
     return(
         <div>

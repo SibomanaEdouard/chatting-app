@@ -5,14 +5,12 @@ const Users=require('../models/users');
 const Messages=require("../models/messages");
 const Friends=require("../models/Friends");
 const multer=require('multer');
-const path=require('path');
 const getData=require("../Controllers/dataController");
-const ImageControllers = require('../Controllers/ImageController');
 const updateInfo=require("../Controllers/updateInfo");
 const sendMessages=require("../Controllers/directMessagecontrollers");
 const ReceivedMessages=require("../Controllers/getDirectMessages").ReceiverMessages;
 const SentMessages=require("../Controllers/getDirectMessages").SentMessages;
-//this is to insert the user in database
+// //this is to insert the user in database
 Routed.post('/', async (req, res) => {
   const saltRound = 10;
   const { firstname, lastname, email, phone, password } = req.body;
@@ -256,15 +254,16 @@ Routed.post("/friends", async (req, res) => {
         res.status(200).json(friendInfo);
       } else {
         console.log("No information found for any friend");
-        res.status(404).json("There is no information about this friend");
+        res.status(404).json({error:"There is no information about this friend"});
       }
     } else {
+
       console.log("You don't have any friends");
-      res.status(404).json('There are no friends in your account');
+      res.status(404).json({error:'There are no friends in your account'});
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ "error": "Something went wrong. Please try again later." });
+    res.status(500).json({ error: "Something went wrong. Please try again later." });
   }
 });
 
@@ -300,6 +299,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 Routed.put('/updateImage', upload.single('image'), async (req, res) => {
+
   // Routed.put('/updateImage', async (req, res) => {
   const { userId } = req.body;
   console.log(req.body)
@@ -325,6 +325,7 @@ Routed.put('/updateImage', upload.single('image'), async (req, res) => {
     res.status(500).json({ error: 'Something went Wrong. Please try again later' });
   }
 });
+
 
 //this is the route to retrive image from the uploads folder
 Routed.use('/uploads',express.static('uploads'));

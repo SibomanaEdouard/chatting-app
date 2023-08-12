@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import { FirstsideBar } from "./HeaderWork";
 import Header from "./HeaderWork";
 import axios from "axios";
+//import { FriendContext } from "../FriendContext";
 
 //This is the components to get All users 
 export const RecommendedFriends=()=>{
@@ -181,55 +182,75 @@ export const GetFriends = () => {
     );
   };
 
-//this is to display the freinds without additional elements
-export const GetFriendsOnly=()=>{
-    //this is the function to send the request to the backend server
-    const sender=localStorage.getItem("id");
-    const [friend,setFriend]=useState([]);
-    const displayFriends=async()=>{
-        try{
-        const response=await fetch("http://localhost:5500/sign/friends",{
-            method:'POST',
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({sender})
+//this is to get the only the friends for one user
+  export const GetFriendsOnly = () => {
+    const sender = localStorage.getItem("id");
+    const [friend, setFriend] = useState([]);
+  
+    const displayFriends = async () => {
+      try {
+        const response = await fetch("http://localhost:5500/sign/friends", {
+          method: 'POST',
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sender })
         });
-        if(response.ok){
-            const friendInfo=await response.json();
-            setFriend(friendInfo);
-        }
-        else{
-    alert("Check internet connection and try again");
-        }
-    }catch(error){
-    alert("something went wrong please try again latter!");
-    console.log(error);
-    }
-    }
-    
-    displayFriends();
 
-    return(
-        <div className="text-start">
-  <div className="row">
-    <h1 className="text-start">Friends</h1>
-    {friend.length > 0 ? (
-      <ul className="list-unstyled d-flex flex-wrap">
-        {friend.map((chanta) => (
-          <li key={chanta._id} className="text-start m-2" style={{ flexBasis: '50%', maxWidth: '50%' }}>
-            <img
-              src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
-              style={{ width: '10%', height: 'auto', borderRadius: '50%' }}
-              alt=""
-              className="m-2"
-            />
-            <span className="m-2">{chanta.lastname}</span>
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <h4>No friend found</h4>
-    )}
-  </div>
-</div>
-    )
-}
+        if (response.ok) {
+          const friendInfo = await response.json();
+          setFriend(friendInfo);
+        } else {
+          console.log("Response not okay. Status:", response.status); 
+          alert("Check internet connection and try again");
+        }
+      } catch (error) {
+        console.error(error); 
+        alert(error.message);
+        console.log(error);
+      }
+    };
+  
+    useEffect(() => {
+      displayFriends();
+    }); 
+
+
+    // let me create the function to store id on local storage
+    const storeId = (Friendid) => {
+      localStorage.setItem('friendId', Friendid);
+    };
+
+    
+    return (
+      <div className="text-start">
+        <div className="">
+          <h1 className="text-start">Friends</h1>
+          {friend.length > 0 ? (
+            // <ul className="list-unstyled d-flex flex-wrap">
+            <ul className="list-unstyled d-flex text-break flex-wrap">
+              {friend.map((chanta) => (
+                <li
+                  key={chanta._id}
+                  className="text-start m-2"
+                  style={{ flexBasis: '50%', cursor: 'pointer' }}
+                  onClick={() => storeId(chanta._id)} 
+                >
+                  <img
+                    src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
+                    style={{ width: '10%', height: 'auto', borderRadius: '50%' }}
+                    alt=""
+                    className="m-2"
+                  />
+                  <span className="m-2">{chanta.lastname}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <h4>No friend found! Please add friend</h4>
+          )}
+        </div>
+      </div>
+    );
+  };
+  
+
+

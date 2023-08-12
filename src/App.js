@@ -1,5 +1,5 @@
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import './App.css';
 import { BrowserRouter as Router , Route,Routes } from 'react-router-dom';
 import { Home } from './components/Home';
@@ -21,9 +21,7 @@ import {io} from 'socket.io-client';
 
 // import Header from './pages/HeaderWork';
 function App() {
-  const [user,setUser]=useState(null);
-//let me pass information about the user in the context
-const value=useMemo(()=>({user,setUser}),[user,setUser])
+
   let socket = useRef(null)
   useEffect(()=>{
      socket.current=io('http://localhost:5500')
@@ -31,6 +29,7 @@ const value=useMemo(()=>({user,setUser}),[user,setUser])
   return (
   
     <div className="App">
+    
       <Router>
    
 <Routes>
@@ -50,8 +49,7 @@ const value=useMemo(()=>({user,setUser}),[user,setUser])
 
         <Route path="/posts" element={<Collapsed socket={socket}/>}/>    
         </Routes>
-      </Router>
-      
+      </Router>      
     </div>
    
    

@@ -1,5 +1,4 @@
 const mongoose=require('mongoose');
-const User=require('../models/users');
 
 //this is the schema which will store direct messages
 const directMessages=new mongoose.Schema({
