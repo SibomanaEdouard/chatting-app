@@ -135,20 +135,21 @@ const Newmessage=await new Messages({
 if(!Newmessage.content){
  return res.status(400).json({error:"Please Insert the message before send."})
   
-}
+}else{
 const saveUser=await Newmessage.save();
-
 if(saveUser){
 
- res.status(200).json(saveUser.content)
-}else{
-
-
-  res.status(400).json({error:"Failed to send the message. Please try again later"})
+  res.status(200).json(saveUser.content)
+ }else{
+ 
+ 
+   res.status(400).json({error:"Failed to send the message. Please try again later"})
+ }
 }
+
 }catch(error){
   console.log(error);
-  res.status(400).json({error:"sorry something went wrong! Please Try again later"});
+  res.status(400).json({error:"Sorry something went wrong! Please Try again later"});
   
 }
 })
@@ -159,7 +160,7 @@ Routed.get('/posts',async(req,res)=>{
   const allPosts=await Messages.find().select(' content , sender , time ');
   if(allPosts.length <= 0){
     res.status(404).json("No post  found on this place !")
-  }
+  }else{
   const senderId=allPosts.map(posts=>posts.sender)
 
   const usernames=await Promise.all(senderId.map(async(userId)=>{
@@ -174,7 +175,7 @@ content:post.content,
 time:post.time
 }))
   res.status(200).json({MessageWithOwner});
-  }catch(error){
+  }}catch(error){
 console.log(error)
 res.status(400).json({error:"sorry something went wrong! Please try again latter"})
   }

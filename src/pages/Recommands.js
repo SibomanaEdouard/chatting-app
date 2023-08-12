@@ -104,7 +104,7 @@ export const GetFriends = () => {
           throw new Error('Error fetching friends data');
         }
       } catch (error) {
-        alert('Something went wrong. Please try again later!');
+        // alert('Something went wrong. Please try again later!');
         console.log(error);
       }
     };
@@ -204,7 +204,7 @@ export const GetFriends = () => {
         }
       } catch (error) {
         console.error(error); 
-        alert(error.message);
+        // alert(error.message);
         console.log(error);
       }
     };
@@ -216,6 +216,7 @@ export const GetFriends = () => {
 
     // let me create the function to store id on local storage
     const storeId = (Friendid) => {
+      window.location.reload();
       localStorage.setItem('friendId', Friendid);
     };
 

@@ -164,15 +164,16 @@ export const Messages = () => {
       <div className="col-md-4">
     <FriendBar />
     </div>
+
     {/* Sent conversation */}
-    <div className="col-md-3 sentMessages">
+    <div className="col-md-3 scrollable-list p-3">
         {sMessage.length > 0 ? (
           <ul className="mt-5">
             {sMessage.map((sentMessages) => (
               <li
                 key={sentMessages._id}
-                style={{ backgroundColor: "#A0BDFF" }}
-                className=""
+                style={{ backgroundColor: "#A0BDFF",borderRadius:"5px" }}
+                className="m-3 p-5"
               >
                 {sentMessages.content}
               </li>
@@ -184,14 +185,16 @@ export const Messages = () => {
           </div>
         )}
       </div>
-      <div className="col-md-3 receivedMessage">
+
+
+      <div className="col-md-3 receivedMessage scrollable-list">
         {rMessage.length > 0 ? (
           <ul>
             {rMessage.map((receivedMessages) => (
               <li
                 key={receivedMessages._id}
-                className="receivedList m-2"
-                style={{ backgroundColor: "#D9D9D9" }}
+                className="m-3 p-5"
+                style={{ backgroundColor: "#D9D9D9", borderRadius:"5px"}}
               >
                 {receivedMessages.content}
               </li>
@@ -204,9 +207,7 @@ export const Messages = () => {
         )}
       </div>
 
-      
-    </div>
-  {/* </div> */}
+      </div>
   <div className="row">
     <div className="col">
     <MessageForm />

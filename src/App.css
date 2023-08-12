@@ -980,3 +980,7 @@ li{
   top:0%;
   left:4%;
 } */
+.scrollable-list {
+  max-height: 100vh; 
+  overflow-y: auto;
+}

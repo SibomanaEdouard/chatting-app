@@ -9,7 +9,6 @@ import {RiUserReceivedFill} from "react-icons/ri"
 import {RiPhoneCameraFill} from "react-icons/ri"
 import{RiAdvertisementFill} from "react-icons/ri"
 import {RiArrowLeftSLine} from "react-icons/ri"
-// import { Username } from "./addprofile";
 import {BsFillSendFill} from 'react-icons/bs'
 import {RiThumbUpFill} from 'react-icons/ri'
 import {RiDiscussFill} from 'react-icons/ri'
@@ -230,7 +229,7 @@ export const FirstsideBar=()=>{
         <div>
         <div className="postm">
          
-            <form>
+            <form onSubmit={HandleSubmit}>
                  <input 
                  type="text" 
                  value={messages.content}
