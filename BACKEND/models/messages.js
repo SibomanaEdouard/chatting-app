@@ -1,6 +1,6 @@
-const { date } = require('joi');
+
 const mongoose=require('mongoose');
-const User=require('../models/users')
+
 
 //this is the schema which will store the messages
 const Messages=new mongoose.Schema({

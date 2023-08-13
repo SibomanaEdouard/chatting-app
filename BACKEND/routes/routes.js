@@ -164,13 +164,17 @@ Routed.get('/posts',async(req,res)=>{
   const senderId=allPosts.map(posts=>posts.sender)
 
   const usernames=await Promise.all(senderId.map(async(userId)=>{
-    const user=await Users.findById(userId).select('lastname')
-    return user ? user.lastname:'unknown';
+    const user=await Users.findById(userId).select('lastname');
+    return user ? (user.lastname) :"unknown";
   }))
-
+  const userImages=await Promise.all(senderId.map(async(userId)=>{
+    const userI=await Users.findById(userId).select('imageUrl');
+    return userI ? (userI.imageUrl) :null;
+  }))
   //combine the name from users with the messages
 const MessageWithOwner=allPosts.map((post,indes)=>({
 sender:usernames[indes],
+userImages,
 content:post.content,
 time:post.time
 }))
@@ -185,10 +189,9 @@ res.status(400).json({error:"sorry something went wrong! Please try again latter
 Routed.get('/recommends',async(req,res)=>{
 
 try{
-  const users= await Users.find().select('lastname , _id');
+  const users= await Users.find();
   if(users){
 
-  console.log(users);
   res.status(200).json(users);
   }
   else{

@@ -60,6 +60,7 @@ const MessageForm = () => {
 
       if (response.status === 200) {
         alert(response.data.message);
+        window.location.reload();
      setInput("");
       } else {
         throw new Error(response.data.error);
@@ -70,8 +71,7 @@ const MessageForm = () => {
     }
   };
 
-  return (
-    <div className="messagesfield">
+  return (<div className="messagesfield col-10">
       <form onSubmit={sendMessage}>
         <RiThumbUpFill className="rithumIcon" />
         <RiDiscussFill className="ridiscicon" />
@@ -208,8 +208,8 @@ export const Messages = () => {
       </div>
 
       </div>
-  <div className="row">
-    <div className="col">
+  <div className="row d-flex">
+    <div className="col-md-8">
     <MessageForm />
     </div>
   </div>

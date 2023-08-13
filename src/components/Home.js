@@ -4,16 +4,19 @@ import {RiMessage3Fill} from "react-icons/ri"
 //this is navigation bar function
 export const NavigationTab=(()=>{
     return(
-      <div className="text-black">
-        <div className="NavigationTab fixed">
-            <h1 className="header"><a href="/">Home</a></h1>
-            <h1 className="about"><a href="/about">About</a></h1>
-            <h1 className="contact"><a href="/contact">contact</a></h1>
-            <h1 className="login"><a href="/sign/login">Login</a></h1>
-            <RiMessage3Fill className="RiMessage3Fill"/>
-            <h1 className="logo">ENPEACE</h1>
+      <div className="fixed row" style={{fontFamily:"inter"}}>
+        <div className="NavigationTab p-4 row d-flex">
+          <span className="col-md-8 text-start">
+        <RiMessage3Fill className="fs-2"/>
+            <span className="">TALKNET</span>
+            </span>
+            <span className="col-md-1"><a href="/">Home</a></span>
+            <span className="col-md-1"><a href="/about">About</a></span>
+            <span className="col-md-1"><a href="/contact">contact</a></span>
+            <span className="col-md-1"><a href="/sign/login">Login</a></span>
+            
         </div>
-        </div>
+         </div>
     )
 })
 //thd function to display the dives

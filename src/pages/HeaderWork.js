@@ -112,7 +112,7 @@ getData();
         borderRadius: "50%",
       }}
     />
-    <span className="p-3">{username}</span>
+    <span className="p-3 fw-bold">{username}</span>
   </div>
 </div>
     )
@@ -317,16 +317,34 @@ else{
 HandleMessage();
 
 return(
-    <div className="PostsMessages">
+    <div className="PostsMessages p-3">
+        
     {post.length >0 ?(
+      
        <ul>
+    
         {post.map((mess)=>(
-            <li>
-<h1>{mess.sender}</h1>
+            <li className="">
+                <div className="p-5">
+                <div className="text-align-start align-items-start justify-content-start">
+             <img
+      src={`http://localhost:5500/sign/uploads/${mess.userImages}`}
+      alt="Profile"
+      style={{
+        width: "8vh",
+        height: "8vh",
+        borderRadius: "50%",
+      }}
+    />
+<span className="p-2 fw-bold">{mess.sender}</span>
+</div>
 <p>{mess.content}</p>
 <h5>{mess.time}</h5>
-<Comments/>
+</div>
+<br/>
 
+<Comments/>
+<br/>
             </li>
         ))}
        </ul>
@@ -347,6 +365,45 @@ export  const Post=()=>{
     )
 }
 
+export const UserImage=()=>{
+    const [image ,setImage]=useState(null);
+    //let me get  the data from the backend
+const getData=async()=>{
+    try{
+    //this is to get the id of the user from local storage
+    const user=localStorage.getItem('id');
+    const response=await axios.post("http://localhost:5500/sign/datum",{user});
+    if(response.status===200){
+        const data=await response.data;
+        setImage(data.imageUrl);
+    }else{
+        throw new Error(response.error)
+    }
+}
+catch(error){
+    console.log(error);
+    alert("Something went wrong please try again latter");
+}
+}
+getData();
+    return(
+<div>
+ 
+  <div className="username col-md-6" style={{ padding: "0.3%" }}>
+    <img
+      src={`http://localhost:5500/sign/uploads/${image}`}
+      alt="Profile"
+      style={{
+        width: "8vh",
+        height: "8vh",
+        borderRadius: "50%",
+      }}
+    />
+    <span className="p-3 fw-bold">{username}</span>
+  </div>
+</div>
+    )
 
+}
 
 export default Header;

@@ -34,41 +34,54 @@ alert(error);
 }
 
 //messages
-const messages=()=>{
+const messages=(friendId)=>{
+localStorage.setItem('friendid',friendId);
     window.location.href='/messages'
 }
 
 return(
-    <div className="users container">
-        <h1>People you may know </h1>
-        <div className="row">
-        {Information.length > 0 ?(
-            
-            <ul className="row">
-                {Information.map((eddy)=>(
-                    <li className="col-md-4 border border-0 p-2 m-2" style={{listStyle:"none",backgroundColor:'#F6F6F6'}}>
-<div className="ml-0">
- <h3>{eddy.lastname}</h3> 
- <p style={{color:"#888686"}}>mutual friends</p>
- <img src={eddy.imageUrl} className="" alt="Profile"  style={{    
-}}/>
- </div>
- <div className="recommandPro">
- <p onClick={()=>AddFriends(sender,eddy._id)}>Add Friend</p>
- <p onClick={()=>messages()}>message</p>
- <h3>View profile</h3>
- </div>
-</li>
-                ))}
+<div className="" style={{marginLeft:"15%"}}>
+<div className="row">
+  <h1 className="text-start fs-3" style={{fontFamily:"inter"}}>People you may know</h1>
+  {Information.length > 0 ? (
+    <ul className="row">
+      {Information.map((chanta) => (
+        <li
+          key={chanta._id}
+          className="col-md-4 border border-0 p-2 m-2 text-start"
+          style={{ listStyle: 'none', backgroundColor: '#F6F6F6', width: '40%' }}
+        >
+          <span className="fw-bold">{chanta.lastname}</span>
+          <br />
+          <span style={{ color: '#888686' }}>mutual friends</span>
 
-            </ul>
-        ):(
-            <h1>There is no suggesions for you</h1>
-        )}
-
-    </div>
-    </div>
-)
+          <img
+            src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
+            style={{ width: '15%', height: '10vh', marginLeft: '48%' }}
+            className="text-end"
+            alt="profile"
+          />
+          <br />
+          <div style={{ backgroundColor: '#D9D9D9', marginButton: '0%' }}>
+            <span onClick={() =>AddFriends(sender,chanta._id)} style={{color: '#407BFF'}}>
+              Add friend
+            </span>
+            <span className="text-center" style={{ color: '#407BFF', marginLeft: '4%' }} onClick={messages}>
+              Message
+            </span>
+            <span className="fw-bold" style={{ marginLeft: '30%' }}>
+              View profile
+            </span>
+          </div>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <h4>No friend found</h4>
+  )}
+</div>
+</div>
+);
 }
 
 export const Recommends=()=>{

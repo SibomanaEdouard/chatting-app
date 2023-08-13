@@ -6,30 +6,27 @@ body{
  .NavigationTab a:visited{
   text-decoration: underline;
 }
+
 .App {
   text-align: center;
 }
+
 *{
   color:black;
   text-decoration: none;
  font-family: inter;
   box-sizing: border-box;
+  padding: 0%;
+  margin: 0%;
 }
 
-
+/* This is the design of the navigation tab */
 .NavigationTab{
 background-color:#A0BDFF;
-width:100%;
-height: 10vh;
-position: absolute;
-top:0%;
-color:black !important;
-font-size: large;
-font-family: Verdana, Geneva, Tahoma, sans-serif;
+font-family: inter;
 font-style: normal;
-
-
 }
+
 .NavigationTab a{
   color: black;
 outline: none;
@@ -186,12 +183,7 @@ text-decoration: none;
   width: 30%;
 }
 
-.headerlo{
-  color:#407BFF;
-  position: absolute;
-  top:15%;
-  left: 59%;
-}
+
 .form1 input{
   background-color:#D9D9D9;
   border-radius: 10px;
@@ -201,13 +193,15 @@ height: 6vh;
   margin-top: 1%;
   outline: none;
   border: none;
+  font-size: large;
+  font-family: inter;
 }
 
 .form1{
   position: absolute;
   top: 25%;
   left: 55%;
-  text-align: left;
+  text-align: right;
 
 }
 
@@ -303,16 +297,17 @@ font-size: 36px;
 }
 /* This is the design about the the about  */
 .imageAbout{
-  position: absolute;
-  right: 0.2%;
-  top: 6%;
+  position: relative;
+  right: 0%;
+  top: 40%;
+ 
 }
 
 .mission{
   position: absolute;
   top:20%;
   left: 5%;
-  padding: 3%;
+  padding: 2%;
   text-align:left;
 }
 
@@ -338,6 +333,7 @@ font-size: 36px;
   width:53%;
   border-radius: 5%;
 }
+
 .HomeCont{
   text-align: left;
   font-family:'Times New Roman', Times, serif;
@@ -554,19 +550,28 @@ outline: none;
 .postsfield{
 
 background-color: #A0BDFF;
-position: absolute;
+/* position: absolute;
 
-right: 26%; 
-width: 50%;
+right: 26%;  */
+
+text-align: center;
+align-items: center;
+justify-content: center;
+/* width: 50%;
 padding: 1%;
-height: 7vh;
+height: 7vh; */
+padding: 1%;
 border: none;
 outline: none;
+width: 50%
 }
 .postsfield input{
-  padding: 1%;
+  /* padding: 1%;
   width:75%;
+  border-radius: 10px; */
+  width: 75%;
   border-radius: 10px;
+  padding: 1%;
   border: none;
   outline: none;
 }
@@ -628,15 +633,16 @@ margin-left: 0.5%;
 .messagesfield{
 
   background-color: #A0BDFF;
-  position: fixed;
-  bottom:0.4%;
-  left: 10%; 
-  width: 90%;
+   position:fixed;
+  bottom:0%;
+  left: 11%;
+  right:0%; 
+  
+  /* width: 89%; */
   padding: 1%;
-  height: 7vh;
   border: none;
   outline: none;
-  font-family: inter;
+  font-family: inter; 
   }
 
 .messagesfield input{
@@ -967,20 +973,11 @@ li{
 .userFriendlist{
   text-align: left;
 }
-/* this is the design for received messages */
-/* .receivedMessages{
-  position: absolute;
-  top:0%;
-  right:2%;
-} */
-
-/* this is the design for received messages */
-/* .sentMessages{
-  position: absolute;
-  top:0%;
-  left:4%;
-} */
 .scrollable-list {
   max-height: 100vh; 
   overflow-y: auto;
+}
+.PostsMessages{
+  max-height: 80vh; 
+  overflow-y: auto;  
 }

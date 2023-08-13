@@ -20,7 +20,7 @@ const DisplayContent=()=>{
     return(<div className="mission">
     
     <h1>Our mission</h1>
-    <p>To help to build  </p>
+    <p>To  build friendship </p>
        <p><span className="pabout">Unlimited Joyful moments</span> and</p> 
     <p>grow connections wide</p> 
       <p>we provide you with </p>
@@ -37,9 +37,15 @@ const About=()=>{
     return(
     <div>
         <NavigationTab />
-        <ImageAbout/>
+        <div className="row d-flex">
+        <div className="col-md-6 text-start p-2 ">
 <DisplayContent/>
+</div>
+            <div className="col-md-6 text-end  p-2">
+        <ImageAbout/>
+        </div>
 
+</div>
     </div>
     )
 }

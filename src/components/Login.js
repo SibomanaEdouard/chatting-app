@@ -67,15 +67,10 @@ function LoginForm() {
         //To take information from the backend
         const Lastname=users.lastname;
         const Id=users.id;
-        const Image=users.imageUrl;
         localStorage.setItem('lastname', Lastname);
         localStorage.setItem('id', Id);
-        localStorage.setItem('imageUrl',Image);
-
       
-
       // Update the response data using the updateResponseData function
-   
      setInputs({
       email:"",
       password:""
@@ -108,9 +103,10 @@ function LoginForm() {
         <>
         <NavigationTab />
         <ImageLogo />
-        <h1 className="headerlo">Login</h1>
-      <div className="form1">
-
+        {/* <h1 className="headerlo">Login</h1> */}
+       
+      <div className="form1 text-end align-items-end justify-content-end">
+      <span className="text-center" style={{color:"#407BFF"}}>Login</span>
         {/* onsubmit we will invoke the function called FetLogin*/}
         
         <form onSubmit = {FetLogin}>
