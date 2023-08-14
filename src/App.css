@@ -176,70 +176,33 @@ text-decoration: none;
   font-size: smaller;
 
 }
-.imageLogin{
-  position: absolute;
-  top: 20%;
-  left: 1%;
-  width: 30%;
-}
 
 
 .form1 input{
   background-color:#D9D9D9;
-  border-radius: 10px;
-  width: 160%;
-height: 6vh;
-  padding: 2%;
-  margin-top: 1%;
+  border-radius: 7px;
   outline: none;
   border: none;
   font-size: large;
   font-family: inter;
 }
 
-.form1{
-  position: absolute;
-  top: 25%;
-  left: 55%;
-  text-align: right;
-
-}
-
-.form1 label{
-
-/* position: absolute; */
-
-text-align: left;
-font-family: 'Inter';
-font-style: normal;
-font-weight: 300;
-font-size: 36px;
-
-}
-.email1 label{
-  position: absolute;
-  top: 60%;
-  color:#407BFF
-}
 
 .Ask{
   font-size: large;
   font-style: normal;
-  font-weight: normal;
+  font-weight: lighter;
 }
 .buttons{
   border: none;
   font-size: large;
   font-weight: bolder;
 }
+
 .logobutton{
   background-color: #A0BDFF;
-  padding: 5%;
   border-radius: 7px;
-  color:black;
-  font-size: large;
-  width: 50%;
-  margin-top:3%;
+  padding: 0.1% 1%;
   border:none;
 }
 
@@ -277,12 +240,14 @@ font-size: 36px;
   outline-offset: none;
 
 }
+
 .GetIntouch{
   position: absolute;
-  top: 10%;
+  top: 15%;
   left: 25%;
   background-image: url("./Images/map.svg");
 }
+
 .formContact label{
   position: absolute;
   left: 35%;
@@ -290,11 +255,11 @@ font-size: 36px;
 .allcontact{
   background-size: 100%;
  text-align: center;
-  /* width: fit-content; */
   width: 100%;
   height: 100vh;
   background-image: url("./Images/map.svg");
 }
+
 /* This is the design about the the about  */
 .imageAbout{
   position: relative;

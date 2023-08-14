@@ -4,7 +4,7 @@ import {RiMessage3Fill} from "react-icons/ri"
 //this is navigation bar function
 export const NavigationTab=(()=>{
     return(
-      <div className="fixed row" style={{fontFamily:"inter"}}>
+      <div className="fixed row fw-bold" style={{fontFamily:"inter"}}>
         <div className="NavigationTab p-4 row d-flex">
           <span className="col-md-8 text-start">
         <RiMessage3Fill className="fs-2"/>
@@ -51,9 +51,9 @@ export const Home = () => {
         <div>
             <NavigationTab/>
             <div className="HomeCont">
-        <h1 className='enjoy'>ENJOY WITH </h1>
-        <h1 className="enjoy1">FRIENDS</h1>
-        <div className="words">
+        <h1 className='enjoy fw-bold'>ENJOY WITH </h1>
+        <h1 className="enjoy1 fw-bold">FRIENDS</h1>
+        <div className="words fw-light">
            <h5> Share splendid moments</h5>
            <h5> with Your loved ones</h5>
            <h5> With images and videos</h5>

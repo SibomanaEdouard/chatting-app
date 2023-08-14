@@ -9,12 +9,9 @@ const UpdatePass=(e)=>{
 e.preventDefault();
 window.location.href='/updatepassword';
 }
-
-
 export const ImageLogo=()=>{
   return (
-    <div className="imageLogin">
-
+    <div>
     <img src={home} alt="This is the time to enjoy with others" />
     </div>
   )
@@ -97,45 +94,51 @@ function LoginForm() {
   }
 
  
-
   //The fields of login formm
     return (
-        <>
+        <div>
+
         <NavigationTab />
-        <ImageLogo />
-        {/* <h1 className="headerlo">Login</h1> */}
-       
-      <div className="form1 text-end align-items-end justify-content-end">
-      <span className="text-center" style={{color:"#407BFF"}}>Login</span>
+
+ <div className="row d-flex">
+  <div className="col-md-8">
+        <ImageLogo />    
+        </div>
+
+      <div className="form1 text-start align-items-start justify-content-start col-md-4 mt-5">
+
+      <span className="text-center fs-1 m-5" style={{color:"#407BFF"}}>Login</span>
+
         {/* onsubmit we will invoke the function called FetLogin*/}
-        
         <form onSubmit = {FetLogin}>
-          <label>
+          <label for="email">
             Email
-            <br />
+            </label>            
+            <br/>            
             <input
               type="email"
               name="email"
               id="email"
               placeholder="Enter email"
               required
+              className="p-1"
               value={inputs.email || ""}
               onChange={handleChange}
-              className="email1"
-            />
-          </label>
-          <br />
-          <label>
+            />     
+          <br/>
+          <label className="" for="password">
             Password
-            <br />
+            </label>
+            <br/>
             <input
               type={showpassword ? 'text':'password'}
               name="password"
               id="password"
-              placeholder="Enter Your password"
+              placeholder="Enter  password"
               required
               value={inputs.password || ""}
               onChange={handleChange}
+              className="p-1"
             />
             {showpassword ? (
               <FaEyeSlash
@@ -148,20 +151,22 @@ function LoginForm() {
               onClick={()=>setShowpassword(true)}
               />
             )}
-          </label>
-          <br />
-          <button type="submit" className="logobutton">Login</button>
+        
+          <br/>
+          <br/>
+          <button type="submit" className="logobutton btn-start fw-bold fs-3">Login</button>
         </form>
         <br/><br/>
-        <h1><span className="Ask">Forget your password? </span><button onClick={UpdatePass} className="buttons">Reset</button>
-        </h1> 
-        <h1> <span className="Ask">New Here ?</span><button onClick={HandleSigning} className="buttons">SignUp</button></h1>
-           
+
+        <span className="Ask text-start" onClick={UpdatePass}>Forget your password? </span>
+        <button onClick={UpdatePass} className="buttons">Reset</button>     
+<br/>
+         <span className="Ask text-start" onClick={HandleSigning}>New Here ?</span>
+         <button onClick={HandleSigning} className="buttons">SignUp</button>
       </div>
-  
-      </>
+      </div> 
+      </div>
     );
-  }
-  
+  }  
   export default LoginForm;
 

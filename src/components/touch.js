@@ -11,20 +11,22 @@ const Touch=()=>{
         Email:"",
         Message:""
     })
+
     //this is the function to update the inputs
     const HandleInputs=(e)=>{
-const name=e.target.name;
-const value=e.target.value;
-
+// const name=e.target.name;
+// const value=e.target.value;
 setInputs(e.target.value)
     }
     return(
         <div className="allcontact">
             <NavigationTab />
-    <div className="contactReally">
+    <div >
         
         <form className="formContact">
-<label>Name</label><br/><br/>
+<label>Name</label>
+<br/><br/>
+
 <input
 name="name"
 type="textarea"
@@ -32,6 +34,7 @@ value={input.Name}
 onChange={HandleInputs}
 placeholder="Enter name"
 /><br/><br/>
+
 <label>Email</label><br/>
 <input
 name="name"
@@ -53,7 +56,8 @@ placeholder="Feedback"
 />
 
 </form>
-<h1 className="GetIntouch">Get in touch</h1>
+
+<h1 className="GetIntouch  fw-bold mt-5" style={{}}>Get in touch</h1>
     </div>
     </div>
     )
