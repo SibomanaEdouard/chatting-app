@@ -152,11 +152,11 @@ export const GetFriends = () => {
     };
   
     return (
-      <div className="" style={{marginLeft:"15%"}}>
+      <div className="p-5" style={{marginLeft:"15vw"}}>
         <div className="row">
-          <h1 className="text-start fs-3">Friends</h1>
+          <h1 className="text-start fs-3 pt-5">Friends</h1>
           {friend.length > 0 ? (
-            <ul className="row">
+            <ul className="row pt-5">
               {friend.map((chanta) => (
                 <li
                   key={chanta._id}

@@ -7,11 +7,18 @@ import { GetFriends } from "./Recommands";
 export const Friends=()=>{
     return(
         <div>
-            <FirstsideBar/>
+              <Header/>
+              <div className="">
+              <div className="">
+              <FirstsideBar/>
+              </div>
+        
          
-            <Header/>
+            <div className="">
             <GetFriends/>
-         
+            </div>
+        
+            </div>
         </div>
     )
 }

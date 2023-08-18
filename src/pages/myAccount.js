@@ -43,9 +43,13 @@ const handleButtonClick = () => {
               userId: userId
             }
           });
-      console.log(Image);
-          const imageUrl = response.data.imageUrl;
-          window.location.reload();
+ if(response.status===200){
+  window.location.reload();
+ }
+  else{
+    alert("Check internet connection and try again!");
+  }
+        
         } catch (error) {
           console.error('Image upload failed:', error);
         }
@@ -81,7 +85,7 @@ const handleButtonClick = () => {
 <div className="text-start m-3">
 <img src={`http://localhost:5500/sign/uploads/${image}`} 
 alt="profile"
-style={{width:"10%",height:"10vh",borderRadius:"50%"}}
+style={{width:"8vh",height:"8vh",borderRadius:"50%"}}
 />
 <span className="text-white p-3">{username}</span>
 </div>
@@ -241,7 +245,7 @@ const About = () => {
             <img
               src={`http://localhost:5500/sign/uploads/${image}`}
               alt="profile"
-              style={{ width: "5%", borderRadius: "50%" }}
+              style={{ width:"4vh",height:"4vh",borderRadius:"50%" }}
             />
             <span className="fw-bold p-2">
               work
@@ -374,10 +378,18 @@ const About = () => {
 export const Account=()=>{
     return(
         <div>
+             <Header/>
+             <div className="row d-flex">
+              <div className="col-md-2">
             <FirstsideBar/>
-            <Header/>
+            </div>
+            <div className="col-md-2">
             <AccountHeader/>
+            </div><br/>
+            <div className="col-md-12">
             <About/>
+            </div>
+            </div>
         </div>
     )
 }
