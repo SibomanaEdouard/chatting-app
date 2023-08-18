@@ -320,21 +320,15 @@ text-decoration: none;
 
 }
 /* This is for the inputs of  */
-.forms input{
+ .forms input{
   outline: none;
   background-color: #D9D9D9;
-  width: 100%;
-  height: 7vh;
   border: none;
-  margin-bottom: 3%;
-  border-radius: 5%;
-  padding: 4%;
+  border-radius: 5px;
   font-size: large;
   font-family:'Times New Roman', Times, serif;
-/* font-weight: bolder; */
 font-style: normal;
-
-}
+} 
 /* This  is for signup button */
 .signupb{
   background-color: #A0BDFF;
@@ -348,13 +342,6 @@ border-radius: 8%;
 outline: none;
 border: none;
 }
-.Logos{
-  position: absolute;
-  top: 20%;
-  left: 3%;
-  width: 50vw;
-  height: 50vh;
-}
 .h1s{
   font-size: large;
   font-family:'Times New Roman', Times, serif
@@ -367,49 +354,18 @@ font-style: normal;
 border: none;
 
 }
-/* Design about the icons in sign in */
-.pass-icons{
-  position: absolute;
-  top: 73%;
-  right: 3%;
-}
-/* Design of the icon  of hiding or showing password in login */
-.pass-iconl{
-  position: absolute;
-  top:33%;
-  left: 143%;
-
-}
-
-.signhead{
- color:#407BFF;
- position: absolute;
- top:10%;
- left:65%;
- font-size: xx-large;
- font-family:'Times New Roman', Times, serif;
- font-style: normal;
- font-weight:bolder;
-}
 .formup{
-  position: absolute;
-  top:30%;
- left: 50%;
  text-align: left;
- font-size: large;
+ font-size: medium;
  font-family: 'Times New Roman', Times, serif;
  font-weight: lighter;
  font-style: normal;
 }
  .formup input{
-  width: 150%;
-  height: 4.5vh;
+  font-size: medium;
   border: none;
   background-color:#D9D9D9;
-  border-radius: 4.5%;
-  margin-bottom: 3%;
-  padding:10%;
-outline: none;
+  border-radius: 7px;
 }
 .resetheader{
   color:#407BFF;
@@ -417,6 +373,7 @@ outline: none;
   font-family: 'Times New Roman', Times, serif;
 
 }
+
 .formup label{
   font-size: xx-large;
 font-family: 'Times New Roman', Times, serif;
@@ -425,19 +382,16 @@ font-family: 'Times New Roman', Times, serif;
 
 .buttonup{
   background-color:#A0BDFF;
-  padding: 3.5%;
- width: 35%;
- border-radius: 15%;
-
+  padding: 1% 4%;
+ border-radius: 10px;
 }
+
+
 /* this is the design of update icons */
 .password-icon1{
-  /* position:relative;
-  right: 28%; */
   position: absolute;
   top: 75%;
   right: -45%;
-  /* margin-right: 10%; */
   }
 
   .password-icon{
@@ -446,12 +400,14 @@ font-family: 'Times New Roman', Times, serif;
     top: 50%;
 
     }
+
     /* The following is the design for the header and sidebar for the pages */
     .firstHeader{
       background-color:#A0BDFF;
       text-align: left;
       font-size: medium;
-    width: 100%;
+    width:100vw;
+  position: fixed;
       font-weight: lighter;
       padding: 0.3%;
 font-family: inter;
@@ -464,14 +420,15 @@ font-family: inter;
  background: #D9D9D9;
  top:9%;
  text-align: left;
- width: 10%;
- height: auto;
- bottom: 0%;
+ width: auto;
+ height: 100vh;
+ /* bottom: 0%; */
  font-family: inter;
 }
 .firstsidebar div {
-margin-bottom:40% ;
+margin-bottom:35% ;
 margin-left: 20%;
+padding-right: 12px;
  }
  /* The design for the icons for header */
  .iconsHd{
@@ -496,14 +453,13 @@ margin-left: 20%;
 .username{
  text-align: end; 
 }
+
 .postm input{
-  margin-top: 4%;
+ 
   background-color: #A0BDFF;
-  ;
-  width: 60%;
-  padding: 1%;
-  border-radius: 20px;
-  height: 7vh;
+  width:100vw;
+  padding: 7%;
+  border-radius: 7px;
 border: none;
 outline: none;
 }
@@ -515,68 +471,36 @@ outline: none;
 .postsfield{
 
 background-color: #A0BDFF;
-/* position: absolute;
-
-right: 26%;  */
-
 text-align: center;
 align-items: center;
 justify-content: center;
-/* width: 50%;
-padding: 1%;
-height: 7vh; */
-padding: 1%;
 border: none;
 outline: none;
-width: 50%
+
 }
 .postsfield input{
-  /* padding: 1%;
-  width:75%;
-  border-radius: 10px; */
-  width: 75%;
   border-radius: 10px;
-  padding: 1%;
   border: none;
   outline: none;
 }
 
-.rithumIcon{
-font-size: xx-large;
-position: absolute;
-left: 3%;
-}
 
-.ridiscicon{
-  font-size: xx-large;
-  position: absolute;
-  left: 8%;
-  }
-  .bsend2{
-    font-size: xx-large;
-    background-color: #A0BDFF;
-  }
 
 
 
   /* This is design of the recommends page */
   .users {
-  
-   /* background-color: #F6F6F6; */
    text-align: left;
-   /* width: 80%; */
    margin-top: 0%;
    float:inline-start;
    margin-left: 14%;
-   /* padding:10px; */
    font-family: inter;
    font-size: 19px;
-   
-   
-  
   }
+
   .recommendsCont{
-    overflow: scroll;
+    overflow-y: auto; 
+    max-height: 100vh;
   }
   .recommandPro{
     background-color: #D9D9D9;
@@ -644,7 +568,7 @@ margin-left: 0.5%;
  
 }
 .accPrNav{
-  width: 70%;
+  width: 70vw;
   margin-left: 20%;
   font-family: inter;
   
@@ -943,6 +867,15 @@ li{
   overflow-y: auto;
 }
 .PostsMessages{
-  max-height: 80vh; 
-  overflow-y: auto;  
+  font-family: inter;
+   /* max-height: 60vh; 
+  overflow-y: auto;    */
+  width: 100vh;
+}
+
+.profileCont{
+  font-family: inter;
+   max-height: 100vh; 
+  overflow-y: auto;   
+
 }

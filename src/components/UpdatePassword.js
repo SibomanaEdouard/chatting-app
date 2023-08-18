@@ -55,65 +55,97 @@ else{
 
   return (
     <div>
+        <NavigationTab/>
+        <div className='row d-flex'>
+          <div className='col-md-6 mt-5'>
       <ImageLogo/>
-      <div className='formup'>
-      <h1 className='resetheader'>Reset password</h1>
+      </div>
+      <div className='formup col-md-6 mt-5'>
+      <h1 className='resetheader text-center'>Reset password</h1>
      
-      <form onSubmit={FetchUpdate}>
+      <form onSubmit={FetchUpdate} className='m-5'>
         <label>Email</label><br/>
         <input
           type="email"
           name="email"
+          required
           value={inputs.email}
           onChange={HandleChangePassword}
+          className='form-control p-3'
+          placeholder='Type email'
         /><br/>
-        <label>Password</label><br/>
+        {/* <label>Password</label><br/>
         <input
           type={showPassword ? 'text' : 'password'}
           name="password"
+          required
           value={inputs.password}
           onChange={HandleChangePassword}
+          className='form-control p-3'
+          placeholder='Type new password'
         />
         {showPassword ? (
           <FaEyeSlash
             key="password-icon"
-            className="password-icon"
             onClick={() => setShowPassword(false)}
           />
         ) : (
           <FaEye
             key="password-icon"
-            className="password-icon"
             onClick={() => setShowPassword(true)}
           />
-        )}<br/>
-        <label>Confirm Password</label><br/>
-        <input
-          type={showConfirmPassword ? 'text' : 'password'}
-          name="confirmPassword"
-          value={inputs.confirmPassword}
-          onChange={HandleChangePassword}
-        />
-        {showConfirmPassword ? (
-          <FaEyeSlash
-            key="confirmPassword-icon"
-            className="password-icon1"
-            onClick={() => setShowConfirmPassword(false)}
-          />
-        ) : (
-          <FaEye
-            key="confirmPassword-icon"
-            className="password-icon1"
-            onClick={() => setShowConfirmPassword(true)}
-          />
-        )}<br/><br/>
-        <button className='buttonup'>Change</button>
+        )}<br/> */}
+        <label>Password</label>
+<div className="input-group">
+  <input
+    type={showPassword ? 'text' : 'password'}
+    name="password"
+    required
+    value={inputs.password}
+    onChange={HandleChangePassword}
+    className="form-control"
+    placeholder="Type new password"
+  />
+  <div className="input-group-append ">
+    <span className="input-group-text fs-1 p-2" onClick={() => setShowPassword(!showPassword)}
+    style={{backgroundColor:"#D9D9D9"}}
+    >
+      {showPassword ? (
+        <FaEyeSlash key="password-icon" />
+      ) : (
+        <FaEye key="password-icon" />
+      )}
+    </span>
+  </div>
+</div>
+
+<label>Confirm Password</label>
+<div className="input-group">
+  <input
+    type={showConfirmPassword ? 'text' : 'password'}
+    name="confirmPassword"
+    required
+    value={inputs.confirmPassword}
+    onChange={HandleChangePassword}
+    className="form-control"
+    placeholder="Re-Type new password"
+  />
+  <div className="input-group-append">
+    <span
+      className="input-group-text fs-1 p-2"
+      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+      style={{ backgroundColor: "#D9D9D9", cursor: "pointer" }}
+    >
+      {showConfirmPassword ? <FaEyeSlash key="password-icon" /> : <FaEye key="password-icon" />}
+    </span>
+  </div>
+</div>
+
+        <button className='buttonup mt-5'>Change</button>
       </form>
       </div>
-      <NavigationTab/>
+    </div>
     </div>
   );
 };
-
-
 export default UpdatePassword;

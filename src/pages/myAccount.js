@@ -77,7 +77,7 @@ const handleButtonClick = () => {
         <div className="accPrNav">
 
             <div className="AccProf">
-<h1>Abba</h1>
+<h1 className="text-white pt-5">Abba</h1>
 <div className="text-start m-3">
 <img src={`http://localhost:5500/sign/uploads/${image}`} 
 alt="profile"
@@ -141,7 +141,7 @@ window.location.href="/account"
 const GoPosts=()=>{
 //this is to orient the user to the posts
   const posts=()=>{
-    window.location.href="/posts"
+    window.location.href="/profile"
     }
     return(
         <div onClick={posts}>

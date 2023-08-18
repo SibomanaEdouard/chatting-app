@@ -154,40 +154,54 @@ if(saveUser){
 }
 })
 
-//this is the route to retrieve posts from the backend to the frontend
-Routed.get('/posts',async(req,res)=>{
-  try{
-  const allPosts=await Messages.find().select(' content , sender , time ');
-  if(allPosts.length <= 0){
-    res.status(404).json("No post  found on this place !")
-  }else{
-  const senderId=allPosts.map(posts=>posts.sender)
+// Define the route to retrieve posts from the backend to the frontend
+Routed.get('/posts', async (req, res) => {
 
-  const usernames=await Promise.all(senderId.map(async(userId)=>{
-    const user=await Users.findById(userId).select('lastname');
-    return user ? (user.lastname) :"unknown";
-  }))
-  const userImages=await Promise.all(senderId.map(async(userId)=>{
-    const userI=await Users.findById(userId).select('imageUrl');
-    return userI ? (userI.imageUrl) :null;
-  }))
-  //combine the name from users with the messages
-const MessageWithOwner=allPosts.map((post,indes)=>({
-sender:usernames[indes],
-userImages,
-content:post.content,
-time:post.time
-}))
-  res.status(200).json({MessageWithOwner});
-  }}catch(error){
-console.log(error)
-res.status(400).json({error:"sorry something went wrong! Please try again latter"})
+  try {
+    const allPosts = await Messages.find();
+    if (allPosts.length <= 0) {
+      res.status(404).json("No posts found on this place!");
+    } else {
+      const senderId = allPosts.map(posts => posts.sender);
+      const usernames = await Promise.all(senderId.map(async (userId) => {
+        const user = await Users.findById(userId).select('lastname');
+        return user ? user.lastname : "unknown";
+      }));
+
+      const userImages = await Promise.all(senderId.map(async (userId) => {
+        const userI = await Users.findById(userId).select('imageUrl');
+        return userI ? userI.imageUrl : "";
+      }));
+
+      // Combine the name from users with the messages and userImages
+      const MessageWithOwner = allPosts.map((post, index) => {
+        const sender = usernames[index];
+        const userImage = userImages[index];
+        const content = post.content;
+
+        // Get hours and minutes from the time
+        const hours = post.time ? post.time.getHours() : 0;
+        const minutes = post.time ? post.time.getMinutes() : 0;
+        const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        return {
+          sender: sender,
+          userImage: userImage, 
+          content: content,
+          time: formattedTime,
+        };
+      });
+
+      res.status(200).json({ MessageWithOwner });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: "Sorry, something went wrong! Please try again later." });
   }
-}) 
+});
+
 
 //this is for recommandations
 Routed.get('/recommends',async(req,res)=>{
-
 try{
   const users= await Users.find();
   if(users){
@@ -199,9 +213,8 @@ try{
   
   }
 }catch(error){
-  console.log("Sorry something went wrong");
+  console.log("Sorry something went wrong!");
   res.status(400).json({error:"Sorry something went wrong"});
-
 }
 })
 
@@ -209,6 +222,7 @@ try{
 Routed.post('/addFriend',async(req,res)=>{
   try{
 const {sender,receiver}=req.body;
+
 //let me check if the sender is in database;
 const senderCheck=await Users.findById({_id:sender});
 if(senderCheck!=null){
@@ -242,6 +256,7 @@ if(receiverCheck!=null){
 
 })
 
+//This is function 
 Routed.post("/friends", async (req, res) => {
   try {
     const { sender } = req.body;

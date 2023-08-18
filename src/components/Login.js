@@ -107,10 +107,10 @@ function LoginForm() {
 
       <div className="form1 text-start align-items-start justify-content-start col-md-4 mt-5">
 
-      <span className="text-center fs-1 m-5" style={{color:"#407BFF"}}>Login</span>
+      <p className="text-center fs-1 " style={{color:"#407BFF"}}>Login</p>
 
         {/* onsubmit we will invoke the function called FetLogin*/}
-        <form onSubmit = {FetLogin}>
+        <form onSubmit = {FetLogin} className="m-4">
           <label for="email">
             Email
             </label>            
@@ -121,16 +121,15 @@ function LoginForm() {
               id="email"
               placeholder="Enter email"
               required
-              className="p-1"
+              className="p-3 form-control"
               value={inputs.email || ""}
               onChange={handleChange}
             />     
-          <br/>
-          <label className="" for="password">
-            Password
-            </label>
-            <br/>
-            <input
+          <br/>       
+
+        <label>Password</label>
+<div className="input-group">
+<input
               type={showpassword ? 'text':'password'}
               name="password"
               id="password"
@@ -138,31 +137,29 @@ function LoginForm() {
               required
               value={inputs.password || ""}
               onChange={handleChange}
-              className="p-1"
+              className="form-control"
             />
-            {showpassword ? (
-              <FaEyeSlash
-              className="pass-iconl"
-              onClick={()=>setShowpassword(false)}
-              />
-            ):(
-              <FaEye 
-              className="pass-iconl"
-              onClick={()=>setShowpassword(true)}
-              />
-            )}
-        
+  <div className="input-group-append">
+    <span
+      className="input-group-text fs-1 p-2"
+      onClick={() => setShowpassword(!showpassword)}
+      style={{ backgroundColor: "#D9D9D9", cursor: "pointer" }}
+    >
+      {showpassword ? <FaEyeSlash key="password-icon" /> : <FaEye key="password-icon" />}
+    </span>
+  </div>
+</div>
           <br/>
           <br/>
           <button type="submit" className="logobutton btn-start fw-bold fs-3">Login</button>
         </form>
         <br/><br/>
 
-        <span className="Ask text-start" onClick={UpdatePass}>Forget your password? </span>
-        <button onClick={UpdatePass} className="buttons">Reset</button>     
+        <span className="Ask text-start p-2" onClick={UpdatePass}>Forget your password? </span>
+        <button onClick={UpdatePass} className="buttons btn btn-white">Reset</button>     
 <br/>
-         <span className="Ask text-start" onClick={HandleSigning}>New Here ?</span>
-         <button onClick={HandleSigning} className="buttons">SignUp</button>
+         <span className="Ask text-start p-2" onClick={HandleSigning}>New Here ?</span>
+         <button onClick={HandleSigning} className="buttons btn btn-white">SignUp</button>
       </div>
       </div> 
       </div>

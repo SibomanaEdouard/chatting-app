@@ -21,11 +21,12 @@ const username=localStorage.getItem("lastname");
 
 //this is for account
 const Myaccount=(e)=>{
+
     e.preventDefault();
 window.location.href='/account'
 
-
 }
+
 //this is for friends
 const Myfriend=(e)=>{
     e.preventDefault();
@@ -65,18 +66,13 @@ window.location.href="/profile"
 
 }
 
-//this is for collapsed
-const Mycollapsed=(e)=>{
-    e.preventDefault();
-window.location.href="/posts"
-
-}
-
 //This the function to return The Header
 const Header=()=>{
+
     const [image ,setImage]=useState(null);
     //let me get  the data from the backend
 const getData=async()=>{
+    
     try{
     //this is to get the id of the user from local storage
     const user=localStorage.getItem('id');
@@ -93,14 +89,18 @@ catch(error){
     alert("Something went wrong please try again latter");
 }
 }
+
+//this is to invoke the function
 getData();
+
     return(
-<div className="firstHeader row d-flex" style={{ backgroundColor: "#A0BDFF" }}>
+<div className="firstHeader row d-flex" 
+style={{ backgroundColor: "#A0BDFF"}}>
   <div className="d-inline p-4 col-md-6">  
     <span>
       <RiMessage3Fill className="fs-2" />
     </span>
-    <span className="fw-bold p-2">ENPEACE</span>
+    <span className="fw-bold p-2">TALKNET</span>
   </div>
   <div className="username col-md-6" style={{ padding: "0.3%" }}>
     <img
@@ -121,42 +121,115 @@ getData();
 
 
 export const FirstsideBar=()=>{
+    const [image ,setImage]=useState(null);
+//let me get  the data from the backend
+const getData=async()=>{
+
+try{
+//this is to get the id of the user from local storage
+const user=localStorage.getItem('id');
+const response=await axios.post("http://localhost:5500/sign/datum",{user});
+if(response.status===200){
+    const data=await response.data;
+    setImage(data.imageUrl);
+}else{
+    throw new Error(response.error)
+}
+}
+catch(error){
+console.log(error);
+alert("Something went wrong please try again latter");
+}
+}
+
+//this is to invoke the function
+getData();
+const [isCollapsed,setIsCollapsed]=useState(true);
+const changeCollapse=()=>{
+    setIsCollapsed(!isCollapsed);
+    console.log(isCollapsed);
+}
     return(
 
-<div className="firstsidebar">
+ <div className= {`firstsidebar ${isCollapsed ? 'collapsed' : ''}`} > 
 
-    {/* This is for account */}
 
-    <div className="acc" onClick={Myaccount}>
-    My account
+    <div className="acc mt-5" onClick={Myaccount}>
+{isCollapsed ? (<>
+    <img
+      src={`http://localhost:5500/sign/uploads/${image}`}
+      alt="Profile"
+      style={{
+        width: "8vh",
+        height: "8vh",
+        borderRadius: "50%",
+      }}
+    />
+   <span>My account</span> 
+</>):(
+    <img
+    src={`http://localhost:5500/sign/uploads/${image}`}
+    alt="Profile"
+    style={{
+      width: "8vh",
+      height: "8vh",
+      borderRadius:"50%",
+    }}
+  /> 
+)}
 </div>
 
 {/* This is for friends */}
 <div onClick={Myfriend}>
-    <RiUserReceivedFill className="iconsHd" />
-    Friends
+
+    {isCollapsed?(<>
+        <RiUserReceivedFill className="fs-4" />
+        <span>
+        Friends
+        </span>
+    </>):(
+        <RiUserReceivedFill className="fs-4" />
+    )}
 </div>
 
 {/* This is for mesages */}
 <div onClick={Mymessages}>
-< TbMessageCircle2Filled className="iconsHd" />
-    Messages
+    {isCollapsed?(<>
+        < TbMessageCircle2Filled className="fs-4" />
+        <span>Messages</span>
+    </>):(
+        < TbMessageCircle2Filled className="fs-4" />
+    )}
 </div>
 <div onClick={MyPosts}>
+    {isCollapsed?(<>
+<RiPhoneCameraFill className="fs-4" />
+<span>Posts</span>
+    </>):(
  
-<RiPhoneCameraFill className="iconsHd" />
-    Posts
+<RiPhoneCameraFill className="fs-4" />
+    )}
 </div>
 
 {/* This is for recommands */}
 <div  onClick={Myrecommends}>
-   <RiAdvertisementFill className="iconsHd"/>
-    Recommend
+   
+    {isCollapsed?(<>
+        <RiAdvertisementFill className="fs-4"/>
+        <span> Recommend</span>
+    </>):(
+        <RiAdvertisementFill className="fs-4"/>
+    )}
 </div>
 {/* This is for setting */}
 <div  onClick={Mysettings}>
-<RiSettings2Fill className="iconsHd"/>
-    Settings
+    {isCollapsed?(<>
+        <RiSettings2Fill className="fs-4"/>
+        <span> Settings</span>
+    </>):(<RiSettings2Fill className="fs-4"/>)}
+
+   
+
 </div>
 <hr color="black"/>
 <br/>
@@ -164,17 +237,31 @@ export const FirstsideBar=()=>{
 <br/>
 {/* This is for logout */}
 <div  onClick={MyLogout}>
-    <BiLogOut className="iconsHd"/>
-    Logout
+   
+    {isCollapsed?(
+        <>
+ <BiLogOut className="fs-4"/>
+ <span> Logout</span> 
+ </>
+    ):(<BiLogOut className="fs-4"/>)}
 </div>
-<div onClick={Mycollapsed}>
-    <RiArrowLeftSLine className="iconsHd"/>
-    Collapse
+<div onClick={changeCollapse}>
+    {isCollapsed?(
+        <>
+   <RiArrowLeftSLine className="fs-4"/>
+ <span> Collapse</span> 
+ </>
+    ):(  <RiArrowLeftSLine className="fs-4"/>)}
+ 
 </div>
 </div>
 
+// </div>
+
     )
 } 
+
+
 // This is to post on general 
  export  const Thought=()=>{
     const [messages,setMessage]=useState({
@@ -183,7 +270,6 @@ export const FirstsideBar=()=>{
         
     });
     
-  
     const ChangeHandl=(e)=>{
       const name=e.target.name;
       const value=e.target.value;
@@ -222,25 +308,20 @@ export const FirstsideBar=()=>{
      
 
     }
-   
-
-     
     return(
         <div>
-        <div className="postm">
-         
-            <form onSubmit={HandleSubmit}>
-                 <input 
-                 type="text" 
-                 value={messages.content}
-                 name="content"
-                onChange={ChangeHandl}
-                placeholder="publish your thought"
-            
-                 />
-                 <BsFillSendFill className="bsend" onClick={HandleSubmit}/>
-            </form>
-        </div>
+  <form onSubmit={HandleSubmit} className="form-control p-3" style={{backgroundColor:"#A0BDFF",width:"55vw",borderRadius:"10px"}}>
+      <input
+        type="text"
+        value={messages.content}
+        name="content"
+        onChange={ChangeHandl}
+        placeholder="Publish your thought"
+        className="border-0"
+        style={{backgroundColor:"#A0BDFF"}}
+      /> 
+       <BsFillSendFill className="fs-2" onClick={HandleSubmit}/>
+  </form>
         </div>
     )
 }
@@ -258,20 +339,20 @@ const Comments=()=>{
 return(
  <div className="postsfield">
             <form>
-                <RiThumbUpFill className="rithumIcon"/>
-                <RiDiscussFill className="ridiscicon"/>
+                <RiThumbUpFill className="fs-1 text-start m-2"/>
+                <RiDiscussFill className="fs-1 text-start m-2"/>
                  <input 
                  type="text" 
                  value={input}
                  name="post"
                 onChange={ChangeHandle}
                placeholder="comment"
+               className="p-2"
                  />
-                   <BsFillSendFill className="bsend2"/>
+                   <BsFillSendFill className="fs-1 text-end m-2"/>
             </form>
           
-        </div> 
-    
+        </div>    
 ) 
 }
 
@@ -289,13 +370,9 @@ const GetPost=()=>{
             },
         
         })
-        if(Response.ok){
-          
+        if(Response.ok){          
       const MessagesFromBack=await Response.json();
    
-
-
-
  //This is to display the message
  const data=MessagesFromBack.MessageWithOwner;
 setPost(data)
@@ -309,26 +386,20 @@ else{
         console.log(error);
         alert("Failed to send the message please try again letter");
     }
-    
-     
-
     }
 
 HandleMessage();
 
 return(
-    <div className="PostsMessages p-3">
-        
-    {post.length >0 ?(
-      
-       <ul>
-    
+    <div className="PostsMessages ">
+    {post.length >0 ?( 
+       <ul className="mt-5">
         {post.map((mess)=>(
             <li className="">
-                <div className="p-5">
-                <div className="text-align-start align-items-start justify-content-start">
+                <div className="text-start align-items-start justify-content-start w-100 p-5" style={{paddingRight:"2%"}}>
+                <div className="">
              <img
-      src={`http://localhost:5500/sign/uploads/${mess.userImages}`}
+      src={`http://localhost:5500/sign/uploads/${mess.userImage}`}
       alt="Profile"
       style={{
         width: "8vh",
@@ -339,7 +410,7 @@ return(
 <span className="p-2 fw-bold">{mess.sender}</span>
 </div>
 <p>{mess.content}</p>
-<h5>{mess.time}</h5>
+<h5 className="text-end">{mess.time}</h5>
 </div>
 <br/>
 
@@ -355,18 +426,22 @@ return(
 )
 }
 export  const Post=()=>{
-      
+     
+    
     return(
-        <div>
-            <div> 
-         <GetPost />
-            </div>
-        </div>
+        <div className="d-flex justify-content-center align-items-center w-100">
+  <div className="text-center">
+    <GetPost />
+  </div>
+</div>
+
     )
 }
 
 export const UserImage=()=>{
+
     const [image ,setImage]=useState(null);
+    
     //let me get  the data from the backend
 const getData=async()=>{
     try{
@@ -376,6 +451,7 @@ const getData=async()=>{
     if(response.status===200){
         const data=await response.data;
         setImage(data.imageUrl);
+        console.log(data.imageUrl);
     }else{
         throw new Error(response.error)
     }

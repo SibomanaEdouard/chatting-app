@@ -4,28 +4,23 @@ import { FirstsideBar } from "./HeaderWork";
 import { Thought } from "./HeaderWork";
 import { Post } from "./HeaderWork";
 import { UserImage } from "./HeaderWork";
-
-const lastname=localStorage.getItem('lastname');
-
-export const Username = () => {
- 
-  
-  
-    return (
-      <div className="">
-        <p>{lastname}</p>
-      </div>
-    );
-  };
-
 const Profile=()=>{
     return(
-        <div>
+        <div className="profileCont">
             <Header/>
-<UserImage/>
+<div className="text-fixed" style={{
+  position: "fixed",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  paddingTop:"50vh"
+}}>
+  <UserImage />
+  <div>
+  <Thought/>
+  </div>
+</div>
 <FirstsideBar/>
-<Thought/>
-<Post />
+<Post/>
         </div>
     )
 }

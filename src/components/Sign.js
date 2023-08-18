@@ -4,6 +4,7 @@ import React from "react";
 import { ImageLogo } from "./Login";
 import { NavigationTab } from "./Home";
 
+
 function loHandle(e){
     e.preventDefault();
     window.location.href='/sign/login';
@@ -65,11 +66,14 @@ const [showpassword,setShowpassword]=useState(false);
     return(
         <div>
             <NavigationTab/>
-            <div className="Logos">
+            <div className="row">
+                
+            <div className="Logos col-md-6 mt-5">
             <ImageLogo/>
             </div>
-            <h1 className="signhead">Sign Up</h1>
-            <div className="forms"> 
+
+            <div className="forms col-md-6"> 
+            <h1 className="text-center fs-2"  style={{color:"#407BFF", fontFamily:'inter'}}>Sign Up</h1>
                 <form onSubmit={FetchData}>
                     <label>FirstName</label><br/>
                     <input type="text" 
@@ -79,6 +83,7 @@ const [showpassword,setShowpassword]=useState(false);
                            value={inputs.firstname}
                            onChange={handleChange}
                            placeholder="Enter firstname"
+                           className="p-2 form-control"
                     /><br/>
 
                     <label>LastName</label><br/>
@@ -89,6 +94,7 @@ const [showpassword,setShowpassword]=useState(false);
                            value={inputs.lastname}
                            onChange={handleChange}
                            placeholder="Enter lastname"
+                           className="p-2 form-control"
                     /><br/>
 
                     <label>Email</label><br/>
@@ -99,6 +105,7 @@ const [showpassword,setShowpassword]=useState(false);
                            id="email"
                            required
                            placeholder="Enter email"
+                           className="p-2 form-control"
                     /><br/>
 
                     <label>Phone</label><br/>
@@ -109,16 +116,17 @@ const [showpassword,setShowpassword]=useState(false);
                            value={inputs.phone}
                            onChange={handleChange}
                            placeholder="Enter phone number"
-
+                           className="p-2 form-control"
                     /><br/>
 
-                    <label>Password</label><br/>
+                    {/* <label>Password</label><br/>
                     <input type={showpassword ? 'text':'password'}
                            name="password"
                            id="password"
                            value={inputs.password}
                            onChange={handleChange}
                            placeholder="Enter password"
+                           className="p-2 form-control"
                     />
                  {showpassword ? (
                     <FaEyeSlash
@@ -132,17 +140,36 @@ const [showpassword,setShowpassword]=useState(false);
                     className="pass-icons"
                     />
                  )}
-                    <br/>
-
-                    <button className="signupb">Sign Up</button>
+                    <br/> */}
+<label>Password</label><br/>
+<div className="input-group">
+                    <input type={showpassword ? 'text':'password'}
+                           name="password"
+                           id="password"
+                           value={inputs.password}
+                           onChange={handleChange}
+                           placeholder="Enter password"
+                           className="form-control"
+                    />
+                    <div className="input-group-append">
+    <span
+      className="input-group-text fs-1 p-2"
+      onClick={() => setShowpassword(!showpassword)}
+      style={{ backgroundColor: "#D9D9D9", cursor: "pointer" }}
+    >
+      {showpassword ? <FaEyeSlash key="password-icon" /> : <FaEye key="password-icon" />}
+    </span>
+  </div>                    
+  </div>
+                    <button className="signupb mt-3">Sign Up</button>
                 </form>
-
                 <p className="h1s">Already have account ? 
                     <button onClick={loHandle}>LOGIN</button>
             
                 </p>
             </div>
         </div>  
+        </div>
     )
 }
 
