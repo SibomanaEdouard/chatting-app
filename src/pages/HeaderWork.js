@@ -86,7 +86,7 @@ const getData=async()=>{
 }
 catch(error){
     console.log(error);
-    alert("Something went wrong please try again latter");
+
 }
 }
 

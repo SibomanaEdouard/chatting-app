@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { FirstsideBar } from "./HeaderWork";
 import Header from "./HeaderWork";
 import axios from "axios";
-//import { FriendContext } from "../FriendContext";
+
 
 //This is the components to get All users 
 export const RecommendedFriends=()=>{
@@ -41,14 +41,15 @@ localStorage.setItem('friendid',friendId);
 
 return(
 <div className="" style={{marginLeft:"15%"}}>
-<div className="row">
-  <h1 className="text-start fs-3" style={{fontFamily:"inter"}}>People you may know</h1>
+<div className="row mt-5">
+  <h1 className="text-start fs-3 d-flex pt-2" style={{fontFamily:"inter",position:"fixed",top:"12vh"}}>People you may know</h1>
   {Information.length > 0 ? (
-    <ul className="row">
+    <ul className="row mt-5 pt-4">
       {Information.map((chanta) => (
+        
         <li
           key={chanta._id}
-          className="col-md-4 border border-0 p-2 m-2 text-start"
+          className="col-md-4 border border-0 p-2 m-2 text-start mt-5"
           style={{ listStyle: 'none', backgroundColor: '#F6F6F6', width: '40%' }}
         >
           <span className="fw-bold">{chanta.lastname}</span>
@@ -88,12 +89,13 @@ export const Recommends=()=>{
 
     return(
         <div className="recommendsCont">
-            <FirstsideBar/>
             <Header/>
+            <FirstsideBar/>
            <RecommendedFriends/>
         </div>
     )
 }
+
 // This is the components to display the friends of the user
 export const GetFriends = () => {
     // This is to get id from localStorage
@@ -236,8 +238,9 @@ export const GetFriends = () => {
     
     return (
       <div className="text-start">
+        <h1>Friends</h1>
         <div className="">
-          <h1 className="text-start">Friends</h1>
+      
           {friend.length > 0 ? (
             // <ul className="list-unstyled d-flex flex-wrap">
             <ul className="list-unstyled d-flex text-break flex-wrap">
