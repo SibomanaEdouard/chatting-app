@@ -59,7 +59,7 @@ const MessageForm = () => {
     e.preventDefault(); // Prevent default form submission
     console.log(input , "friend id is "+friendId)
     try {
-      const response = await axios.post('http://localhost:5500/sign/sendirectmessage', {
+      const response = await axios.post('https://talknet-k4ku.onrender.com/sendirectmessage', {
         content: input,
         sender: userId,
         receiver: friendId,
@@ -114,7 +114,7 @@ export const Messages = () => {
   //this is the received messages
   const receivedMessages = async () => {
     try {
-      const response = await fetch("http://localhost:5500/sign/receivedmessages", {
+      const response = await fetch("https://talknet-k4ku.onrender.com/receivedmessages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sender: friend, receiver: user })
@@ -135,7 +135,7 @@ export const Messages = () => {
   //this is sent messages
   const sentMessages = async () => {
     try {
-      const response = await fetch("http://localhost:5500/sign/sentmessages", {
+      const response = await fetch("https://talknet-k4ku.onrender.com/sentmessages", {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sender: user, receiver: friend })

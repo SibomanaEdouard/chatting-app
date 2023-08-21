@@ -10,7 +10,7 @@ const [Information,setInformation]=useState([]);
 const sender=localStorage.getItem('id');
 
  const FetUsers=async()=>{
-    const Response= await axios.get('http://localhost:5500/sign/recommends')
+    const Response= await axios.get('https://talknet-k4ku.onrender.com/recommends')
     .then((Response=>{
       setInformation(Response.data);
     }))
@@ -24,7 +24,7 @@ FetUsers();
 //function to addFriend
 const AddFriends=async(sender,receiver)=>{
     try{
-        const response=await axios.post("http://localhost:5500/sign/addFriend",{sender,receiver});     
+        const response=await axios.post("https://talknet-k4ku.onrender.com/addFriend",{sender,receiver});     
 alert(response.data);
     }catch(error){
 console.log(error);
@@ -57,7 +57,7 @@ return(
           <span style={{ color: '#888686' }}>mutual friends</span>
 
           <img
-            src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
+            src={`https://talknet-k4ku.onrender.com/uploads/${chanta.imageUrl}`}
             style={{ width: '15%', height: '10vh', marginLeft: '48%' }}
             className="text-end"
             alt="profile"
@@ -106,7 +106,7 @@ export const GetFriends = () => {
     const displayFriends = async () => {
       try {
         // This is the function to send the request to the backend server
-        const response = await fetch('http://localhost:5500/sign/friends', {
+        const response = await fetch('https://talknet-k4ku.onrender.com/friends', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ sender }),
@@ -131,7 +131,7 @@ export const GetFriends = () => {
     // Let me destroy the friendship
     const deleteFriend = async (receiverId) => {
       try {
-        const response = await axios.delete('http://localhost:5500/sign/deleteFriend', {
+        const response = await axios.delete('https://talknet-k4ku.onrender.com/deleteFriend', {
           data: { sender, receiver: receiverId },
         });
   
@@ -169,7 +169,7 @@ export const GetFriends = () => {
                   <br />
                   <span style={{ color: '#888686' }}>mutual friends</span>
                   <img
-                    src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
+                    src={`https://talknet-k4ku.onrender.com/uploads/${chanta.imageUrl}`}
                     style={{ width: '15%', height: '10vh', marginLeft: '48%' }}
                     className="text-end"
                     alt="profile"
@@ -204,7 +204,7 @@ export const GetFriends = () => {
   
     const displayFriends = async () => {
       try {
-        const response = await fetch("http://localhost:5500/sign/friends", {
+        const response = await fetch("https://talknet-k4ku.onrender.com/friends", {
           method: 'POST',
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sender })
@@ -252,7 +252,7 @@ export const GetFriends = () => {
                   onClick={() => storeId(chanta._id)} 
                 >
                   <img
-                    src={`http://localhost:5500/sign/uploads/${chanta.imageUrl}`}
+                    src={`https://talknet-k4ku.onrender.com/uploads/${chanta.imageUrl}`}
                     style={{ width: '10%', height: 'auto', borderRadius: '50%' }}
                     alt=""
                     className="m-2"

@@ -76,7 +76,7 @@ const getData=async()=>{
     try{
     //this is to get the id of the user from local storage
     const user=localStorage.getItem('id');
-    const response=await axios.post("http://localhost:5500/sign/datum",{user});
+    const response=await axios.post("https://talknet-k4ku.onrender.com/datum",{user});
     if(response.status===200){
         const data=await response.data;
         setImage(data.imageUrl);
@@ -104,7 +104,7 @@ style={{ backgroundColor: "#A0BDFF"}}>
   </div>
   <div className="username col-md-6" style={{ padding: "0.3%" }}>
     <img
-      src={`http://localhost:5500/sign/uploads/${image}`}
+      src={`https://talknet-k4ku.onrender.com/uploads/${image}`}
       alt="Profile"
       style={{
         width: "8vh",
@@ -128,7 +128,7 @@ const getData=async()=>{
 try{
 //this is to get the id of the user from local storage
 const user=localStorage.getItem('id');
-const response=await axios.post("http://localhost:5500/sign/datum",{user});
+const response=await axios.post("https://talknet-k4ku.onrender.com/datum",{user});
 if(response.status===200){
     const data=await response.data;
     setImage(data.imageUrl);
@@ -157,7 +157,7 @@ const changeCollapse=()=>{
     <div className="acc mt-5" onClick={Myaccount}>
 {isCollapsed ? (<>
     <img
-      src={`http://localhost:5500/sign/uploads/${image}`}
+      src={`https://talknet-k4ku.onrender.com/uploads/${image}`}
       alt="Profile"
       style={{
         width: "8vh",
@@ -168,7 +168,7 @@ const changeCollapse=()=>{
    <span>My account</span> 
 </>):(
     <img
-    src={`http://localhost:5500/sign/uploads/${image}`}
+    src={`https://talknet-k4ku.onrender.com/uploads/${image}`}
     alt="Profile"
     style={{
       width: "8vh",
@@ -277,7 +277,7 @@ const changeCollapse=()=>{
     }
     const HandleSubmit=async()=>{
         try{
-        const Response=await fetch("http://localhost:5500/sign/posts",{
+        const Response=await fetch("https://talknet-k4ku.onrender.com/posts",{
             method:"POST",
             headers:{
                "Content-Type":"application/json" 
@@ -362,7 +362,7 @@ const GetPost=()=>{
     const [post,setPost]=useState([]);
     const HandleMessage=async()=>{
         try{
-        const Response=await fetch("http://localhost:5500/sign/posts",{
+        const Response=await fetch("https://talknet-k4ku.onrender.com/posts",{
             method:"GET",
             headers:{
                "Content-Type":"application/json" 
@@ -399,7 +399,7 @@ return(
                 <div className="text-start align-items-start justify-content-start w-100 p-5" style={{paddingRight:"2%"}}>
                 <div className="">
              <img
-      src={`http://localhost:5500/sign/uploads/${mess.userImage}`}
+      src={`https://talknet-k4ku.onrender.com/uploads/${mess.userImage}`}
       alt="Profile"
       style={{
         width: "8vh",
@@ -447,7 +447,7 @@ const getData=async()=>{
     try{
     //this is to get the id of the user from local storage
     const user=localStorage.getItem('id');
-    const response=await axios.post("http://localhost:5500/sign/datum",{user});
+    const response=await axios.post("https://talknet-k4ku.onrender.com/datum",{user});
     if(response.status===200){
         const data=await response.data;
         setImage(data.imageUrl);
@@ -467,7 +467,7 @@ getData();
  
   <div className="username col-md-6" style={{ padding: "0.3%" }}>
     <img
-      src={`http://localhost:5500/sign/uploads/${image}`}
+      src={`https://talknet-k4ku.onrender.com/uploads/${image}`}
       alt="Profile"
       style={{
         width: "8vh",

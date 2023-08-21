@@ -35,7 +35,7 @@ const handleButtonClick = () => {
           formData.append('image', file);
           formData.append('userId',userId)
       
-          const response = await axios.put('http://localhost:5500/sign/updateImage', formData, {
+          const response = await axios.put('https://talknet-k4ku.onrender.com/updateImage', formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             },
@@ -60,7 +60,7 @@ const handleButtonClick = () => {
         try{
         //this is to get the id of the user from local storage
         const user=localStorage.getItem('id');
-        const response=await axios.post("http://localhost:5500/sign/datum",{user});
+        const response=await axios.post("https://talknet-k4ku.onrender.com/datum",{user});
         if(response.status===200){
             const data=await response.data;
             setImage(data.imageUrl);
@@ -83,7 +83,7 @@ const handleButtonClick = () => {
             <div className="AccProf">
 <h1 className="text-white pt-5">Abba</h1>
 <div className="text-start m-3">
-<img src={`http://localhost:5500/sign/uploads/${image}`} 
+<img src={`https://talknet-k4ku.onrender.com/uploads/${image}`} 
 alt="profile"
 style={{width:"8vh",height:"8vh",borderRadius:"50%"}}
 />
@@ -182,7 +182,7 @@ const About = () => {
   const userData = async () => {
     const user = localStorage.getItem("id");
     try {
-      const response = await axios.post("http://localhost:5500/sign/datum", {
+      const response = await axios.post("https://talknet-k4ku.onrender.com/datum", {
         user,
       });
 
@@ -215,7 +215,7 @@ const About = () => {
   const updateInfo = async () => {
     try {
       //send the request to the backend
-      const response = await axios.put("http://localhost:5500/sign/updateinfo", {
+      const response = await axios.put("https://talknet-k4ku.onrender.com/updateinfo", {
         user: localStorage.getItem("id"),
         home,
         hobby,
@@ -243,7 +243,7 @@ const About = () => {
         <div className="row text-start p-4">
           <div className="col-md-6">
             <img
-              src={`http://localhost:5500/sign/uploads/${image}`}
+              src={`https://talknet-k4ku.onrender.com/uploads/${image}`}
               alt="profile"
               style={{ width:"4vh",height:"4vh",borderRadius:"50%" }}
             />
