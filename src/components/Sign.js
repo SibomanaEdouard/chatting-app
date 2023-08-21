@@ -32,7 +32,7 @@ function SignInForm(){
     const FetchData=async(event)=>{
         event.preventDefault();
         try{
-            const response=await fetch("http://localhost:5500/sign",{
+            const response=await fetch("https://talknet-k4ku.onrender.com",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
@@ -118,29 +118,6 @@ const [showpassword,setShowpassword]=useState(false);
                            placeholder="Enter phone number"
                            className="p-2 form-control"
                     /><br/>
-
-                    {/* <label>Password</label><br/>
-                    <input type={showpassword ? 'text':'password'}
-                           name="password"
-                           id="password"
-                           value={inputs.password}
-                           onChange={handleChange}
-                           placeholder="Enter password"
-                           className="p-2 form-control"
-                    />
-                 {showpassword ? (
-                    <FaEyeSlash
-                    
-                    className="pass-icons"
-                    onClick={()=>setShowpassword(false)}
-                    />
-                 ):(
-                    <FaEye
-                    onClick={()=>setShowpassword(true)}
-                    className="pass-icons"
-                    />
-                 )}
-                    <br/> */}
 <label>Password</label><br/>
 <div className="input-group">
                     <input type={showpassword ? 'text':'password'}

@@ -28,7 +28,7 @@ const UpdatePassword = () => {
     e.preventDefault();
     
     try{
-const response=await fetch("http://localhost:5500/sign",{
+const response=await fetch("https://talknet-k4ku.onrender.com",{
 method:"PUT",
 headers:{
  "Content-Type":"application/json"
@@ -74,27 +74,6 @@ else{
           className='form-control p-3'
           placeholder='Type email'
         /><br/>
-        {/* <label>Password</label><br/>
-        <input
-          type={showPassword ? 'text' : 'password'}
-          name="password"
-          required
-          value={inputs.password}
-          onChange={HandleChangePassword}
-          className='form-control p-3'
-          placeholder='Type new password'
-        />
-        {showPassword ? (
-          <FaEyeSlash
-            key="password-icon"
-            onClick={() => setShowPassword(false)}
-          />
-        ) : (
-          <FaEye
-            key="password-icon"
-            onClick={() => setShowPassword(true)}
-          />
-        )}<br/> */}
         <label>Password</label>
 <div className="input-group">
   <input
