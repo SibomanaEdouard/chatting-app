@@ -86,9 +86,9 @@ function LoginForm() {
   
 
     }catch (error){
-      console.log(error);
+      console.log(error.message);
 
-    alert(error);
+    alert(error.message);
     
     }
   }
