@@ -143,6 +143,7 @@ const Touch = () => {
                         value={input.name}
                         onChange={HandleInputs}
                         placeholder="Enter name"
+                        required
                     /><br /><br />
 
                     <label>Email</label><br />
@@ -152,6 +153,7 @@ const Touch = () => {
                         value={input.email}
                         onChange={HandleInputs}
                         placeholder="Enter Email"
+                        required
                     /><br /><br />
 
                     <label>Message</label><br />
@@ -162,6 +164,7 @@ const Touch = () => {
                         value={input.message}
                         onChange={HandleInputs}
                         placeholder="Feedback"
+                        required
                     />
 
                 </form>
